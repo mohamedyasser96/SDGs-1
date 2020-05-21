@@ -1,0 +1,102 @@
+.wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    overflow: hidden; position: fixed; 
+    justify-content: center;
+  }
+  .card-wrapper {
+    height: 100%;
+    width: 70%;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+  }
+  .welcome {
+    width: 35%;
+    height: 100%;
+    background-image: url('../../assets/welcome.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  .register-wrapper {
+    width: 65%;
+    height: 100%;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+  .register-header {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .radioGroup {
+    display: flex;
+    align-items: center ;
+  }
+  h1 {
+    color: #007DB8;
+    font-size: x-large;
+  }
+  .ngo-form-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    overflow: auto;
+  
+  }
+  .ps-form-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 72%;
+    overflow: auto;
+  }
+  
+  .rightForm {
+    width: 50%;
+    margin: 2%;
+    height: 100%;
+  }
+  .leftForm {
+    width: 50%;
+    margin: 2%;
+    height: 100%;
+  }
+  .bottomForm {
+    width: 100%;
+    margin-left: 2%;
+    height: 30pt;
+  }
+  .item {
+    margin: 1%;
+    height: 70pt;
+  }
+  .dynamic-delete-button {
+    cursor: pointer;
+    position: relative;
+    top: 4px;
+    font-size: 24px;
+    color: #999;
+    transition: all 0.3s;
+  }
+  
+  .dynamic-delete-button:hover {
+    color: #777;
+  }
+  
+  
+  .staff-input {
+    width: 60%;
+    margin-right: 8px;
+  }
+  
+  .add-button {
+    width: 60%;
+  }
+  
