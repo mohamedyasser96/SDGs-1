@@ -1,0 +1,453 @@
+<div class="wrapper">
+  <div class="card-wrapper">
+    <div class="welcome"></div>
+    <div class="register-wrapper">
+      <div class="register-header">
+        <h1>Registration</h1>
+        <div class="radioGroup">
+          <nz-radio-group
+            [(ngModel)]="radioValue"
+            (ngModelChange)="showRegistration()"
+            [nzSize]="small"
+          >
+            <label nz-radio nzValue="NGO">NGO</label>
+            <label nz-radio nzValue="PS">Private Sector</label>
+          </nz-radio-group>
+        </div>
+      </div>
+      <div *ngIf="showNGO">
+        <form
+          nz-form
+          [formGroup]="validateNGO"
+          (ngSubmit)="submitNGOForm()"
+          class="ngo-form-wrapper"
+        >
+          <div style="display: flex; flex-direction: row;">
+            <div class="rightForm">
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzRequired
+                    style="text-align: left;"
+                    nzFor="name"
+                    >NGO Name</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="The input is not valid Name!">
+                    <input nz-input formControlName="name" id="name" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzFor="password"
+                    style="text-align: left;"
+                    nzRequired
+                    >Password</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="Please input your password!">
+                    <input
+                      nz-input
+                      type="password"
+                      id="password"
+                      formControlName="password"
+                      (ngModelChange)="updateConfirmValidator()"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzFor="mainContact"
+                    style="text-align: left;"
+                    nzRequired
+                    >Main Contact Number</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="The input is not valid Number!">
+                    <input
+                      nz-input
+                      formControlName="mainContact"
+                      id="mainContact"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzFor="vision"
+                    style="text-align: left;"
+                    nzRequired
+                    >Vision</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="Please write the vision here!">
+                    <textarea
+                      formControlName="vision"
+                      nz-input
+                      rows="1"
+                      placeholder="Please write the vision here!"
+                    ></textarea>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzFor="SDGs"
+                    style="text-align: left;"
+                    nzRequired
+                    >Intended SDGs</nz-form-label
+                  >
+                  <nz-select
+                    nzErrorTip="Please input your Intended SDGs!"
+                    [nzMaxTagPlaceholder]="SDGsPlaceHolder"
+                    nzMode="multiple"
+                    nzPlaceHolder="Please Select "
+                    [(ngModel)]="SDGs"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <nz-option
+                      *ngFor="let option of listOfSDGs"
+                      [nzLabel]="option.label"
+                      [nzValue]="option.value"
+                    ></nz-option>
+                  </nz-select>
+                  <ng-template #SDGsPlaceHolder let-selectedList>
+                    and {{ selectedList.length }} more selected
+                  </ng-template>
+                </nz-form-item>
+              </div>
+            </div>
+            <div class="leftForm">
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
+                  <nz-form-control nzErrorTip="The input is not valid E-mail!">
+                    <input nz-input formControlName="email" id="email" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    style="text-align: left;"
+                    nzFor="checkPassword"
+                    nzRequired
+                    >Confirm Password</nz-form-label
+                  >
+                  <nz-form-control [nzErrorTip]="errorTpl">
+                    <input
+                      nz-input
+                      type="password"
+                      formControlName="checkPassword"
+                      id="checkPassword"
+                    />
+                    <ng-template #errorTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Please confirm your password!
+                      </ng-container>
+                      <ng-container *ngIf="control.hasError('confirm')">
+                        Two passwords that you enter is inconsistent!
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item" style="display: flex; flex-direction: column;">
+                <nz-form-item>
+                  <nz-form-label nzFor="staffMembers" nzRequired
+                    >Staff Members
+                  </nz-form-label>
+                  <br />
+                  <a (click)="addStaffMembers()">Add Staff Members</a>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label style="text-align: left;" nzRequired
+                    >Intended Directions</nz-form-label
+                  >
+                  <nz-select
+                    style="padding-top: 3pt;"
+                    [nzMaxTagPlaceholder]="DirectionsPlaceHolder"
+                    nzMode="multiple"
+                    nzPlaceHolder="Please Select "
+                    [(ngModel)]="Directions"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <nz-option
+                      *ngFor="let option of listOfDirections"
+                      [nzLabel]="option.label"
+                      [nzValue]="option.value"
+                    ></nz-option>
+                  </nz-select>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label style="text-align: left;" nzRequired
+                    >Intended Work Locations</nz-form-label
+                  >
+                  <nz-select
+                    style="margin-top: 3pt;"
+                    [nzMaxTagPlaceholder]="LocationsPlaceHolder"
+                    nzMode="multiple"
+                    nzPlaceHolder="Please Select "
+                    [(ngModel)]="Locations"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <nz-option
+                      *ngFor="let option of listOfLocations"
+                      [nzLabel]="option.label"
+                      [nzValue]="option.value"
+                    ></nz-option>
+                  </nz-select>
+                </nz-form-item>
+              </div>
+            </div>
+          </div>
+          <div class="bottomForm">
+            <nz-form-item>
+              <nz-form-label nzRequired nzFor="documents"
+                >Required Documents
+              </nz-form-label>
+              <br />
+              <a style="margin-left: 3%;"
+                >Upload A Copy Of Official Government Registration
+                Certificate</a
+              >
+              <br />
+              <a style="margin-left: 3%;"
+                >Upload A Copy Of Governing Document</a
+              >
+            </nz-form-item>
+            <div style="display: flex; justify-content: center;">
+              <nz-form-item>
+                <nz-form-control>
+                  <button nz-button nzType="primary">Register</button>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="showPS">
+        <form
+          nz-form
+          [formGroup]="validatePS"
+          (ngSubmit)="submitPSForm()"
+          class="ps-form-wrapper"
+        >
+          <div style="display: flex; flex-direction: row;">
+            <div class="rightForm">
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzRequired
+                    style="text-align: left;"
+                    nzFor="name"
+                    >NGO Name</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="The input is not valid Name!">
+                    <input nz-input formControlName="name" id="name" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzFor="password"
+                    style="text-align: left;"
+                    nzRequired
+                    >Password</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="Please input your password!">
+                    <input
+                      nz-input
+                      type="password"
+                      id="password"
+                      formControlName="password"
+                      (ngModelChange)="updateConfirmValidator()"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzFor="mainContact"
+                    style="text-align: left;"
+                    nzRequired
+                    >Main Contact Number</nz-form-label
+                  >
+                  <nz-form-control nzErrorTip="The input is not valid Number!">
+                    <input
+                      nz-input
+                      formControlName="mainContact"
+                      id="mainContact"
+                    />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label style="text-align: left;" nzRequired
+                    >Resources To Provide</nz-form-label
+                  >
+                  <nz-select
+                    style="margin-top: 3pt;"
+                    nzMode="multiple"
+                    nzPlaceHolder="Please Select "
+                    [(ngModel)]="Resources"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <nz-option
+                      *ngFor="let option of listOfResources"
+                      [nzLabel]="option.label"
+                      [nzValue]="option.value"
+                    ></nz-option>
+                  </nz-select>
+                </nz-form-item>
+              </div>
+            </div>
+            <div class="leftForm">
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
+                  <nz-form-control nzErrorTip="The input is not valid E-mail!">
+                    <input nz-input formControlName="email" id="email" />
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    style="text-align: left;"
+                    nzFor="checkPassword"
+                    nzRequired
+                    >Confirm Password</nz-form-label
+                  >
+                  <nz-form-control [nzErrorTip]="errorTpl">
+                    <input
+                      nz-input
+                      type="password"
+                      formControlName="checkPassword"
+                      id="checkPassword"
+                    />
+                    <ng-template #errorTpl let-control>
+                      <ng-container *ngIf="control.hasError('required')">
+                        Please confirm your password!
+                      </ng-container>
+                      <ng-container *ngIf="control.hasError('confirm')">
+                        Two passwords that you enter is inconsistent!
+                      </ng-container>
+                    </ng-template>
+                  </nz-form-control>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label style="text-align: left;" nzRequired
+                    >Intended Directions</nz-form-label
+                  >
+                  <nz-select
+                    style="padding-top: 3pt;"
+                    [nzMaxTagPlaceholder]="DirectionsPlaceHolder"
+                    nzMode="multiple"
+                    nzPlaceHolder="Please Select "
+                    [(ngModel)]="Directions"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <nz-option
+                      *ngFor="let option of listOfDirections"
+                      [nzLabel]="option.label"
+                      [nzValue]="option.value"
+                    ></nz-option>
+                  </nz-select>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label style="text-align: left;" nzRequired
+                    >Intended Work Locations</nz-form-label
+                  >
+                  <nz-select
+                    style="margin-top: 3pt;"
+                    [nzMaxTagPlaceholder]="LocationsPlaceHolder"
+                    nzMode="multiple"
+                    nzPlaceHolder="Please Select "
+                    [(ngModel)]="Locations"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <nz-option
+                      *ngFor="let option of listOfLocations"
+                      [nzLabel]="option.label"
+                      [nzValue]="option.value"
+                    ></nz-option>
+                  </nz-select>
+                </nz-form-item>
+              </div>
+            </div>
+          </div>
+          <div class="bottomForm">
+            <div style="display: flex; justify-content: center;">
+              <nz-form-item>
+                <nz-form-control>
+                  <button  nz-button nzType="primary">Register</button>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<nz-modal
+  [(nzVisible)]="isVisibleAddStaff"
+  nzTitle="Your Staff Members"
+  (nzOnCancel)="handleCancelAddStaff()"
+  (nzOnOk)="handleCancelAddStaff()"
+>
+  <div>
+    <form nz-form [formGroup]="validateStaff">
+      <nz-form-item *ngFor="let member of listOfStaff; let i = index">
+        <div>
+          <input
+            class="staff-input"
+            nz-input
+            placeholder="Member's Email"
+            *ngIf="i == 0"
+            formControlName="member"
+          />
+          <input
+            class="staff-input"
+            nz-input
+            *ngIf="i != 0"
+            placeholder="Member's Email"
+          />
+          <i
+            nz-icon
+            nzType="minus-circle-o"
+            class="dynamic-delete-button"
+            (click)="removeField(member, $event)"
+          ></i>
+        </div>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button
+            nz-button
+            nzType="dashed"
+            class="add-button"
+            (click)="addField($event)"
+          >
+            <i nz-icon nzType="plus"></i>
+            Add Member
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</nz-modal>
