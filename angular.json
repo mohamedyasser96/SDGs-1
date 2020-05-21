@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "SDGs"
+  "defaultProject": "SDGs",
+  "cli": {
+    "analytics": false
+  }
 }

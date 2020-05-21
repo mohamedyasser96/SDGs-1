@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { Md5 } from 'ts-md5';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  validateForm: FormGroup;
+
+  submitForm(): void {
+    for (const i in this.validateForm.controls) {
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
+    }
+  }
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
+
+  ngOnInit(): void {
+    this.validateForm = this.formBuilder.group({
+      email: [null, [Validators.email, Validators.required]],
+      password: [null, [Validators.required]],
+    });
+  }
+
+  submitClicked(): void {
+    if (this.validateForm.valid) {
+      let user = {
+        "email": this.validateForm.value.email,
+        "password": Md5.hashStr(this.validateForm.value.password),
+      }
+      //call login endpoint in user.service
+    }
+  }
+}
