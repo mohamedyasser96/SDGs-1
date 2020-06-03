@@ -8,7 +8,6 @@
           <nz-radio-group
             [(ngModel)]="radioValue"
             (ngModelChange)="showRegistration()"
-            [nzSize]="small"
           >
             <label nz-radio nzValue="NGO">NGO</label>
             <label nz-radio nzValue="PS">Private Sector</label>
@@ -97,7 +96,6 @@
                   <nz-select
                     nzFor="SDGs"
                     nzErrorTip="Please input your Intended SDGs!"
-                    [nzMaxTagPlaceholder]="SDGsPlaceHolder"
                     nzMode="multiple"
                     nzPlaceHolder="Please Select "
                     [(ngModel)]="SDGs"
@@ -177,7 +175,6 @@
                   >
                   <nz-select
                     style="margin-top: 3pt;"
-                    [nzMaxTagPlaceholder]="DirectionsPlaceHolder"
                     nzMode="multiple"
                     nzPlaceHolder="Please Select "
                     [(ngModel)]="Directions"
@@ -198,7 +195,6 @@
                   >
                   <nz-select
                     style="margin-top: 3pt;"
-                    [nzMaxTagPlaceholder]="LocationsPlaceHolder"
                     nzMode="multiple"
                     nzPlaceHolder="Please Select "
                     [(ngModel)]="Locations"
@@ -367,7 +363,6 @@
                   >
                   <nz-select
                     style="padding-top: 3pt;"
-                    [nzMaxTagPlaceholder]="DirectionsPlaceHolder"
                     nzMode="multiple"
                     nzPlaceHolder="Please Select "
                     [(ngModel)]="Directions"
@@ -388,7 +383,6 @@
                   >
                   <nz-select
                     style="margin-top: 3pt;"
-                    [nzMaxTagPlaceholder]="LocationsPlaceHolder"
                     nzMode="multiple"
                     nzPlaceHolder="Please Select "
                     [(ngModel)]="Locations"
@@ -408,7 +402,7 @@
             <div style="display: flex; justify-content: center;">
               <nz-form-item>
                 <nz-form-control>
-                  <button nz-button nzType="primary" (click)="register()">
+                  <button nz-button nzType="primary" (click)="registerPS()">
                     Register
                   </button>
                 </nz-form-control>
