@@ -11,6 +11,7 @@ import { LocationsService } from '../services/locations.service';
 import { DirectionsService } from '../services/directions.service';
 import { ResourcesService } from '../services/resources.service';
 import { SDGsService } from '../services/sdgs.service';
+import { PsService } from '../services/ps.service';
 
 @Component({
   selector: 'app-registration',
@@ -36,6 +37,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private ngoService: NgoService,
               private sdgsService: SDGsService,
+              private psService: PsService,
               private locationsService: LocationsService,
               private directionsService: DirectionsService,
               private resourcesService: ResourcesService) {}
@@ -189,7 +191,7 @@ export class RegistrationComponent implements OnInit {
         "direction": this.Directions,
         "location": this.Locations
       }
-      this.ngoService.register(PS).subscribe(
+      this.psService.register(PS).subscribe(
         (res) => {
           alert('success');
           //  this.router.navigate(['/login'])
