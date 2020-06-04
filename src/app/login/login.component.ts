@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.formBuilder.group({
-      email: [null, [Validators.email, Validators.required]],
+      username: [null, [Validators.required]],
       password: [null, [Validators.required]],
     });
   }
@@ -32,10 +32,13 @@ export class LoginComponent implements OnInit {
   submitClicked(): void {
     if (this.validateForm.valid) {
       let user = {
-        "email": this.validateForm.value.email,
+        "username": this.validateForm.value.username,
         "password": Md5.hashStr(this.validateForm.value.password),
       }
-      //call login endpoint in user.service
+      this.userService.login(user).subscribe(res => {
+          console.log(res)
+        }
+      )
     }
   }
 }
