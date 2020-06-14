@@ -5,6 +5,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Md5 } from 'ts-md5/dist/md5';
+import { NgoService } from '../services/ngo.service';
+import { LocationsService } from '../services/locations.service';
+import { DirectionsService } from '../services/directions.service';
+import { ResourcesService } from '../services/resources.service';
+import { SDGsService } from '../services/sdgs.service';
+import { PsService } from '../services/ps.service';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -12,29 +20,35 @@ import {
 })
 export class RegistrationComponent implements OnInit {
   validateNGO!: FormGroup;
-  validateStaff!: FormGroup;
   validatePS!: FormGroup;
   showNGO = false;
   showPS = false;
-  isVisibleAddStaff = false;
   radioValue;
-  staffEmail;
-  listOfSDGs: Array<{ label: string; value: string }> = [];
-  listOfLocations: Array<{ label: string; value: string }> = [];
-  listOfDirections: Array<{ label: string; value: string }> = [];
-  listOfResources: Array<{ label: string; value: string }> = [];
-  listOfStaff: Array<{ id: number; controlInstance: string }> = [];
+  listOfSDGs = ['1'];
+  listOfLocations = ['1'];
+  listOfDirections = ['1'];
+  listOfResources = ['1'];
   SDGs = [];
   Locations = [];
   Directions = [];
   Resources = [];
+  fileList = [];
+  router: any;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private ngoService: NgoService,
+              private sdgsService: SDGsService,
+              private psService: PsService,
+              private locationsService: LocationsService,
+              private directionsService: DirectionsService,
+              private resourcesService: ResourcesService) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.validateNGOForm();
-    this.validateStaffForm();
     this.validatePSForm();
+    // this.listOfDirections = await this.directionsService.getDirections();
+    // this.listOfLocations = await this.locationsService.getLocations();
+    // this.listOfResources = await this.resourcesService.getResources();
+    // this.listOfSDGs = await this.sdgsService.getSDGs();
   }
 
   validateNGOForm() {
@@ -45,19 +59,8 @@ export class RegistrationComponent implements OnInit {
       name: [null, [Validators.required]],
       mainContact: [null, [Validators.required]],
       vision: [null, [Validators.required]],
-      SDGs: [null, [Validators.required]],
-      Directions: [null, [Validators.required]],
-      Locations: [null, [Validators.required]],
-      Resources: [null, [Validators.required]],
     });
   }
-  validateStaffForm() {
-    this.validateStaff = this.fb.group({
-      member: [null, [Validators.required]],
-    });
-    this.addField();
-  }
-
   validatePSForm() {
     this.validatePS = this.fb.group({
       email: [null, [Validators.email, Validators.required]],
@@ -65,9 +68,6 @@ export class RegistrationComponent implements OnInit {
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       name: [null, [Validators.required]],
       mainContact: [null, [Validators.required]],
-      Directions: [null, [Validators.required]],
-      Locations: [null, [Validators.required]],
-      Resources: [null, [Validators.required]],
     });
   }
   updateConfirmValidator(): void {
@@ -100,33 +100,6 @@ export class RegistrationComponent implements OnInit {
       return {};
     }
   }
-  addStaffMembers() {
-    this.isVisibleAddStaff = true;
-    this.addField();
-  }
-  addField(e?: MouseEvent): void {
-    if (e) {
-      e.preventDefault();
-    }
-    const id =
-      this.listOfStaff.length > 0
-        ? this.listOfStaff[this.listOfStaff.length - 1].id + 1
-        : 0;
-    const control = {
-      id,
-      controlInstance: `${this.staffEmail}`,
-    };
-    this.listOfStaff.push(control);
-    this.staffEmail = null;
-  }
-
-  removeField(i: { id: number; controlInstance: string }, e: MouseEvent): void {
-    e.preventDefault();
-    if (this.listOfStaff.length > 1) {
-      const index = this.listOfStaff.indexOf(i);
-      this.listOfStaff.splice(index, 1);
-    }
-  }
 
   showRegistration() {
     if (this.radioValue == 'NGO') {
@@ -136,10 +109,10 @@ export class RegistrationComponent implements OnInit {
       this.showNGO = false;
       this.showPS = true;
     }
-    this.SDGs = null;
-    this.Directions = null;
-    this.Locations = null;
-    this.Resources = null;
+    this.SDGs = [];
+    this.Directions = [];
+    this.Locations = [];
+    this.Resources = [];
   }
   submitNGOForm(): void {
     // tslint:disable-next-line: forin
@@ -155,12 +128,79 @@ export class RegistrationComponent implements OnInit {
       this.validatePS.controls[i].updateValueAndValidity();
     }
   }
-  handleCancelAddStaff() {
-    this.isVisibleAddStaff = false;
-    // tslint:disable-next-line: forin
-    for (const i in this.validateStaff.controls) {
-      this.validateStaff.controls[i].markAsDirty();
-      this.validateStaff.controls[i].updateValueAndValidity();
+  registerNGO() {
+    this.submitNGOForm();
+    if (
+      this.validateNGO.valid &&
+      this.SDGs.length != 0 &&
+      this.Directions.length != 0 &&
+      this.Locations.length != 0 &&
+      this.fileList.length != 0 &&
+      this.Resources.length != 0
+    ) {
+      const formData = new FormData();
+      formData.append('name', this.validateNGO.value.name);
+      formData.append('email', this.validateNGO.value.email);
+      formData.append(
+        'password',
+        Md5.hashStr(this.validateNGO.value.password).toString()
+      );
+      formData.append('mainContact', this.validateNGO.value.mainContact);
+      formData.append('vision', this.validateNGO.value.vision);
+      this.Resources.forEach((resource: any) => {
+        formData.append('resource', resource);
+      });
+      this.Locations.forEach((location: any) => {
+        formData.append('location', location);
+      });
+      this.Directions.forEach((direction: any) => {
+        formData.append('direction', direction);
+      });
+      this.SDGs.forEach((sdg: any) => {
+        formData.append('sdg', sdg);
+      });
+      this.fileList.forEach((file: any) => {
+        formData.append('files', file);
+      });
+      this.ngoService.register(formData).subscribe(
+        (res) => {
+          alert('success');
+          //  this.router.navigate(['/login'])
+        },
+        (err) => {
+          alert(err.error);
+        }
+      );
     }
   }
+
+  registerPS() {
+    this.submitPSForm();
+    if (
+      this.validatePS.valid &&
+      this.Resources.length != 0 &&
+      this.Directions.length != 0 &&
+      this.Locations.length != 0
+    ) {
+      let PS = {
+        'name': this.validatePS.value.name,
+        "email": this.validatePS.value.email,
+        "password": Md5.hashStr(this.validatePS.value.password),
+        'mainContact': this.validatePS.value.mainContact,
+        "resource": this.Resources,
+        "direction": this.Directions,
+        "location": this.Locations
+      }
+      this.psService.register(PS).subscribe(
+        (res) => {
+          alert('success');
+          //  this.router.navigate(['/login'])
+        },
+        (err) => {
+          alert(err.error);
+        }
+      );
+    }
+  }
+
 }
