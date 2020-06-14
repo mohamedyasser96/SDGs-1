@@ -9,6 +9,36 @@
     background-color:#007DB8;
     z-index: 2;
   }
+  .dell-content {
+    flex-direction: row;
+    width: fit-content;
+    display: flex;
+    flex: 1;
+    float: right;
+  }
+  
+  .dell-title-div {
+    width: 50%;
+  }
+
+  .img-div {
+    width: 50%;
+  }
+  
+  .dell-title {
+    font-size: 12pt;
+    width: fit-content;
+    color: white;
+    float: right;
+    margin-right: 5%;
+  }
+  
+  img {
+    max-width: 220px;
+    width: 100%;
+    max-height: 27pt;
+    height: 25%;
+  }
   nz-content {
     background-color: #007DB8;
 }
