@@ -1,0 +1,30 @@
+<div class="wrapper">
+    <div class="card-wrapper">
+      <div class="welcome"></div>
+      <div class="login-wrapper">
+        <div class="login-header">
+          <h1>Login</h1>
+        </div>
+        <div class="form-wrapper wrapper">
+            <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+              <nz-form-item>
+                <nz-form-label [nzSm]="7" [nzXs]="24" nzRequired nzFor="username">Username</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid username!">
+                  <input nz-input formControlName="username" placeholder="username" id="username" />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label [nzSm]="7" [nzXs]="24" nzRequired nzFor="password">Password</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Password!">
+                  <input nz-input type="password" id="password" placeholder="password" formControlName="password" />
+                </nz-form-control>
+              </nz-form-item>
+              <div class="wrapper content-wrapper">
+                <button id="submitbtn" (click)="submitClicked();" nz-button nzType="primary">Login</button>
+              </div>
+            </form>
+        </div>      
+      </div>
+    </div>
+  </div>
+  
