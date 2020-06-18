@@ -13,8 +13,11 @@ export class ResourcesService {
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
       headers.append('Access-Control-Allow-Origin', '*');
-      this.http.get(`${ip}/resources`, { headers: headers })
-        .subscribe((data) => (resolve(data['resources']), err => reject(err)));
+      this.http.get(`${ip}/resources`, { headers: headers }).toPromise().then(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      });
     })
   }
 }

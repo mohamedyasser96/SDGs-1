@@ -13,8 +13,11 @@ export class LocationsService {
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
       headers.append('Access-Control-Allow-Origin', '*');
-      this.http.get(`${ip}/locations`, { headers: headers })
-        .subscribe((data) => (resolve(data['locations']), err => reject(err)));
+      this.http.get(`${ip}/worklocations`, { headers: headers }).toPromise().then(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      });
     })
   }
 }
