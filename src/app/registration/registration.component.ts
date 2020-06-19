@@ -24,10 +24,10 @@ export class RegistrationComponent implements OnInit {
   showNGO = false;
   showPS = false;
   radioValue;
-  listOfSDGs = ['1'];
-  listOfLocations = ['1'];
-  listOfDirections = ['1'];
-  listOfResources = ['1'];
+  listOfSDGs = [];
+  listOfLocations = [];
+  listOfDirections = [];
+  listOfResources = [];
   SDGs = [];
   Locations = [];
   Directions = [];
@@ -36,19 +36,19 @@ export class RegistrationComponent implements OnInit {
   router: any;
 
   constructor(private fb: FormBuilder, private ngoService: NgoService,
-              private sdgsService: SDGsService,
-              private psService: PsService,
-              private locationsService: LocationsService,
-              private directionsService: DirectionsService,
-              private resourcesService: ResourcesService) {}
+    private sdgsService: SDGsService,
+    private psService: PsService,
+    private locationsService: LocationsService,
+    private directionsService: DirectionsService,
+    private resourcesService: ResourcesService) { }
 
   async ngOnInit() {
     this.validateNGOForm();
     this.validatePSForm();
-    // this.listOfDirections = await this.directionsService.getDirections();
-    // this.listOfLocations = await this.locationsService.getLocations();
-    // this.listOfResources = await this.resourcesService.getResources();
-    // this.listOfSDGs = await this.sdgsService.getSDGs();
+    this.listOfDirections = await this.directionsService.getDirections();
+    this.listOfLocations = await this.locationsService.getLocations();
+    this.listOfResources = await this.resourcesService.getResources();
+    this.listOfSDGs = await this.sdgsService.getSDGs();
   }
 
   validateNGOForm() {
@@ -57,7 +57,7 @@ export class RegistrationComponent implements OnInit {
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       name: [null, [Validators.required]],
-      mainContact: [null, [Validators.required]],
+      mainContact: [null, [Validators.email, Validators.required]],
       vision: [null, [Validators.required]],
     });
   }
@@ -145,19 +145,19 @@ export class RegistrationComponent implements OnInit {
         'password',
         Md5.hashStr(this.validateNGO.value.password).toString()
       );
-      formData.append('mainContact', this.validateNGO.value.mainContact);
+      formData.append('contact', this.validateNGO.value.mainContact);
       formData.append('vision', this.validateNGO.value.vision);
       this.Resources.forEach((resource: any) => {
         formData.append('resource', resource);
       });
       this.Locations.forEach((location: any) => {
-        formData.append('location', location);
+        formData.append('workLocation', location);
       });
       this.Directions.forEach((direction: any) => {
-        formData.append('direction', direction);
+        formData.append('directionToImpact', direction);
       });
       this.SDGs.forEach((sdg: any) => {
-        formData.append('sdg', sdg);
+        formData.append('intendedSDG', sdg);
       });
       this.fileList.forEach((file: any) => {
         formData.append('files', file);
@@ -165,7 +165,7 @@ export class RegistrationComponent implements OnInit {
       this.ngoService.register(formData).subscribe(
         (res) => {
           alert('success');
-          //  this.router.navigate(['/login'])
+          this.router.navigate(['/login'])
         },
         (err) => {
           alert(err.error);
@@ -188,13 +188,14 @@ export class RegistrationComponent implements OnInit {
         "password": Md5.hashStr(this.validatePS.value.password),
         'mainContact': this.validatePS.value.mainContact,
         "resource": this.Resources,
-        "direction": this.Directions,
-        "location": this.Locations
+        "directionToImpact": this.Directions,
+        "workLocation": this.Locations,
+        "intendedSDG": this.SDGs
       }
       this.psService.register(PS).subscribe(
         (res) => {
           alert('success');
-          //  this.router.navigate(['/login'])
+          this.router.navigate(['/login'])
         },
         (err) => {
           alert(err.error);

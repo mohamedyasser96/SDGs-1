@@ -11,6 +11,6 @@ export class PsService {
   constructor(private http: HttpClient) { }
 
   register(userInfo): Observable<any> {
-    return this.http.post(`${ip}/ps/register`, userInfo)
+    return this.http.post(`${ip}/privateSector/register`, userInfo)
   }
 }
