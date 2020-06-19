@@ -11,6 +11,8 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
+import { PsProfileComponent } from './private-sector/ps-profile/ps-profile.component';
+import { PsNavBarComponent } from './private-sector/ps-nav-bar/ps-nav-bar.component';
 
 registerLocaleData(en);
 
@@ -18,7 +20,9 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    PsProfileComponent,
+    PsNavBarComponent
   ],
   imports: [
     BrowserModule,

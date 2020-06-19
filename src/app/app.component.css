@@ -47,7 +47,6 @@
 
   nz-footer {
     background-color: #007DB8;
-    z-index: 2;
     display: flex;
     justify-content: center;
   }
