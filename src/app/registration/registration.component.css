@@ -7,6 +7,7 @@
 }
 .card-wrapper {
   height: 100%;
+  padding-left: 2%;
   width: 70%;
   background-color: white;
   text-align: center;
@@ -16,7 +17,7 @@
 .welcome {
   width: 35%;
   height: 100%;
-  background-image: url('../../assets/welcome.png');
+  background-image: url('../../assets/register.svg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }

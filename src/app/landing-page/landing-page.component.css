@@ -1,58 +1,61 @@
+:host {
+  height: 100%;
+}
 .wrapper {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    overflow: hidden;
-    justify-content: center;
-  }
-  .card-wrapper {
-    height: 100%;
-    width: 70%;
-    background-color: white;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-  }
-  .welcome {
-    width: 35%;
-    height: 100%;
-    background-image: url('../../assets/welcome.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-  }
-  .right-wrapper {
-    width: 65%;
-    height: 100%;
-    padding: 3%;
-    display: flex;
-    flex-direction: column;
-    text-align: start;
-  }
-  .button {
-    margin-top: 30%;
-    border-radius: 4px;
-    width: 200px;
-    background-color: #1890ff;
-    border: none;
-    color: #ffffff;
-    text-align: center;
-    font-size: 16pt;
-    padding: 5pt 10pt 5pt 10pt;
-    transition: all 0.4s;
-    cursor: pointer;
-    opacity: 0.99;
-    align-self: center;
-  }
-  .title {
-    color: #007DB8;
-    z-index: 1;
-    font-size: 3.5vw;
-    font-weight: bold;
-    text-align: center;
-  }
-  .buttons-wrapper{
-    align-self: center;
-    margin-top: 15%;
-    display: flex;
-    flex-direction: column;
-  }
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+
+}
+.illustration-div {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.illustration {
+  width: 70%;
+  height: 100%;
+  background-image: url('../../assets/welcome3.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.welcome-div {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.button {
+  margin-top: 5%;
+  border-radius: 4px;
+  width: 200px;
+  background-color: #007db8;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16pt;
+  padding: 5pt 10pt 5pt 10pt;
+  transition: all 0.4s;
+  cursor: pointer;
+  opacity: 0.99;
+  align-self: center;
+}
+.title {
+  font-size: 2vw;
+  font-weight: bold;
+  text-align: center;
+}
+.buttons-wrapper {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}

@@ -3,8 +3,9 @@
     flex: 1;
     min-height: 100%;
     width: 100%;
+    height:100%
   }
-  
+
   nz-header {
     background-color:#007DB8;
     z-index: 2;
@@ -16,7 +17,7 @@
     flex: 1;
     float: right;
   }
-  
+
   .dell-title-div {
     width: 50%;
   }
@@ -24,7 +25,7 @@
   .img-div {
     width: 50%;
   }
-  
+
   .dell-title {
     font-size: 12pt;
     width: fit-content;
@@ -32,7 +33,7 @@
     float: right;
     margin-right: 5%;
   }
-  
+
   img {
     max-width: 220px;
     width: 100%;
@@ -40,16 +41,17 @@
     height: 25%;
   }
   nz-content {
+    height: 100%;
     background-color: #007DB8;
 }
-  
+
   nz-footer {
     background-color: #007DB8;
     z-index: 2;
     display: flex;
     justify-content: center;
   }
-  
+
   .footer-text {
     width: fit-content;
     color: white;
