@@ -59,7 +59,7 @@
                     nzRequired
                     >Main Contact Number</nz-form-label
                   >
-                  <nz-form-control nzErrorTip="The input is not valid Number!">
+                  <nz-form-control nzErrorTip="The input is not valid Email!">
                     <input
                       nz-input
                       formControlName="mainContact"
@@ -104,8 +104,8 @@
                   >
                     <nz-option
                       *ngFor="let option of listOfSDGs"
-                      [nzLabel]="option"
-                      [nzValue]="option"
+                      [nzLabel]="option.name"
+                      [nzValue]="option.id"
                     ></nz-option>
                   </nz-select>
                   <ng-template #SDGsPlaceHolder let-selectedList>
@@ -163,8 +163,8 @@
                   >
                     <nz-option
                       *ngFor="let option of listOfResources"
-                      [nzLabel]="option"
-                      [nzValue]="option"
+                      [nzLabel]="option.name"
+                      [nzValue]="option.id"
                     ></nz-option>
                   </nz-select>
                 </nz-form-item>
@@ -183,8 +183,8 @@
                   >
                     <nz-option
                       *ngFor="let option of listOfDirections"
-                      [nzLabel]="option"
-                      [nzValue]="option"
+                      [nzLabel]="option.name"
+                      [nzValue]="option.id"
                     ></nz-option>
                   </nz-select>
                 </nz-form-item>
@@ -203,8 +203,8 @@
                   >
                     <nz-option
                       *ngFor="let option of listOfLocations"
-                      [nzLabel]="option"
-                      [nzValue]="option"
+                      [nzLabel]="option.area"
+                      [nzValue]="option.id"
                     ></nz-option>
                   </nz-select>
                 </nz-form-item>
@@ -315,10 +315,37 @@
                   >
                     <nz-option
                       *ngFor="let option of listOfResources"
-                      [nzLabel]="option"
-                      [nzValue]="option"
+                      [nzLabel]="option.name"
+                      [nzValue]="option.id"
                     ></nz-option>
                   </nz-select>
+                </nz-form-item>
+              </div>
+              <div class="item">
+                <nz-form-item>
+                  <nz-form-label
+                    nzFor="SDGs"
+                    style="text-align: left;"
+                    nzRequired
+                    >Intended SDGs</nz-form-label
+                  >
+                  <nz-select
+                    nzFor="SDGs"
+                    nzErrorTip="Please input your Intended SDGs!"
+                    nzMode="multiple"
+                    nzPlaceHolder="Please Select "
+                    [(ngModel)]="SDGs"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <nz-option
+                      *ngFor="let option of listOfSDGs"
+                      [nzLabel]="option.name"
+                      [nzValue]="option.id"
+                    ></nz-option>
+                  </nz-select>
+                  <ng-template #SDGsPlaceHolder let-selectedList>
+                    and {{ selectedList.length }} more selected
+                  </ng-template>
                 </nz-form-item>
               </div>
             </div>
@@ -371,8 +398,8 @@
                   >
                     <nz-option
                       *ngFor="let option of listOfDirections"
-                      [nzLabel]="option"
-                      [nzValue]="option"
+                      [nzLabel]="option.name"
+                      [nzValue]="option.id"
                     ></nz-option>
                   </nz-select>
                 </nz-form-item>
@@ -391,8 +418,8 @@
                   >
                     <nz-option
                       *ngFor="let option of listOfLocations"
-                      [nzLabel]="option"
-                      [nzValue]="option"
+                      [nzLabel]="option.area"
+                      [nzValue]="option.id"
                     ></nz-option>
                   </nz-select>
                 </nz-form-item>

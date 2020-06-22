@@ -13,8 +13,11 @@ export class DirectionsService {
       let headers = new HttpHeaders();
       headers.append('Content-Type', 'application/json');
       headers.append('Access-Control-Allow-Origin', '*');
-      this.http.get(`${ip}/directions`, { headers: headers })
-        .subscribe((data) => (resolve(data['directions']), err => reject(err)));
+      this.http.get(`${ip}/directions`, { headers: headers }).toPromise().then(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      });
     })
   }
 }
