@@ -11,6 +11,8 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
+import { NgoNavBarComponent } from './ngo/ngo-nav-bar/ngo-nav-bar.component';
+import { NgoProfileComponent } from './ngo/ngo-profile/ngo-profile.component';
 
 registerLocaleData(en);
 
@@ -18,7 +20,9 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    NgoNavBarComponent,
+    NgoProfileComponent
   ],
   imports: [
     BrowserModule,
