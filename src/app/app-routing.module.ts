@@ -4,6 +4,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PsProfileComponent } from './private-sector/ps-profile/ps-profile.component';
+import { ProjectsHomeComponent } from './projects/home-page/projects-home/projects-home.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path:'privateSector/profile',
     component:PsProfileComponent
+  },
+  {
+    path:'projects/home',
+    component:ProjectsHomeComponent
   }
 ];
 

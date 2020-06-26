@@ -1,0 +1,39 @@
+:host {
+  height: 100%;
+}
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  flex-direction: row;
+  justify-content: center;
+}
+.header {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  padding: 2%;
+  background-color: white;
+}
+.left-header {
+  width: 50%;
+  height: 100%;
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right-header {
+  width: 50%;
+  margin: 2%;
+  height: 100%;
+  background-image: url('../../../../assets/projects-home.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+h1 {
+  color: #007db8;
+  font-size: 3.2vw;
+}

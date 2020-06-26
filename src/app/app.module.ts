@@ -13,6 +13,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { PsProfileComponent } from './private-sector/ps-profile/ps-profile.component';
 import { PsNavBarComponent } from './private-sector/ps-nav-bar/ps-nav-bar.component';
+import { ProjectsHomeComponent } from './projects/home-page/projects-home/projects-home.component';
 
 registerLocaleData(en);
 
@@ -22,7 +23,8 @@ registerLocaleData(en);
     RegistrationComponent,
     LoginComponent,
     PsProfileComponent,
-    PsNavBarComponent
+    PsNavBarComponent,
+    ProjectsHomeComponent
   ],
   imports: [
     BrowserModule,
