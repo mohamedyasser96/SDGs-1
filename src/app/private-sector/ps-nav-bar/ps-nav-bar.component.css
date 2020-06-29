@@ -1,3 +1,6 @@
 sider-menu {
   height: 100%;
 }
+li:hover {
+  color: #007db8;
+}
