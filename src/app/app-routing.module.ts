@@ -4,6 +4,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PsProfileComponent } from './private-sector/ps-profile/ps-profile.component';
+import { NgoProfileComponent } from './ngo/ngo-profile/ngo-profile.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,10 @@ const routes: Routes = [
   {
     path:'privateSector/profile',
     component:PsProfileComponent
-  }
+  },{
+    path:'ngo/profile',
+    component:NgoProfileComponent
+  },
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Md5 } from 'ts-md5';
+import * as jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-login',
@@ -36,9 +37,16 @@ export class LoginComponent implements OnInit {
         "password": Md5.hashStr(this.validateForm.value.password),
       }
       this.userService.login(user).subscribe(res => {
-          console.log(res)
-        }
-      )
+        localStorage.setItem("token", res.token)
+        let info = jwt_decode(res.token)
+        localStorage.setItem("info", JSON.stringify(info))
+        if (info.type == "com.techdev.sdg.NGO.NGO")
+          this.router.navigate(['/ngo/profile'])
+        else if (info.type == "com.techdev.sdg.PrivateSector.PrivateSector")
+          this.router.navigate(['privateSector/profile'])
+      }, err => {
+        alert("invalid login")
+      })
     }
   }
 }

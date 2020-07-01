@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <div class="side-div">
+      <div class="opacity">
+        <h1 style="text-align: center;">{{info.name}}</h1>
+        <h3 style="text-align: center;">{{info.email}}</h3>
+      </div>
+      <div class="nav">
+        <app-ps-nav-bar></app-ps-nav-bar>
+      </div>
+    </div>
+    <div class="middle-div">
+      <div class="card-div">
+        <h3>Intended SDGs</h3>
+        <div class="card">
+          <img  *ngFor = "let sdg of info.intendedSDGs" class="sdg" src="../../../assets/sdgs/{{sdg.name}}.png" />
+        </div>
+      </div>
+  
+      <div class="card-div">
+        <h3>Resources To Provide</h3>
+        <div class="tags card-div">
+          <p *ngFor = "let resource of info.resources"class="tag">{{resource.name}}</p>
+        </div>
+      </div>
+      <div class="card-div">
+        <h3>Projects</h3>
+        <div class="tags">
+          <a *ngFor = "let project of info.projects" class="project" nz-button nzType="link"
+            ><img
+              src="../../../assets/sdgs/{{project.aim}}.png"
+              style="width: 70%;"
+            /><br />{{project.name}}</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="side-div">
+      <div class="opacity">
+        <h3 style="text-align: center;">Main Contact</h3>
+        <h4 style="text-align: center;">{{info.mainContact}}</h4>
+      </div>
+      <div class="locations-div opacity">
+        <h3>Intended Directions</h3>
+        <div class="tags" style="justify-content: center;">
+          <p *ngFor = "let direction of info.directionsToImpact" class="location-tag">{{direction.name}}</p>
+        </div>
+      </div>
+      <div class="locations-div opacity">
+        <h3>Work Locations</h3>
+        <div class="tags" style="justify-content: center;">
+          <p *ngFor = "let workLocation of info.workLocations" class="location-tag">{{workLocation.area}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
