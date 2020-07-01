@@ -11,8 +11,6 @@
   },
   "private": true,
   "dependencies": {
-    "ng-zorro-antd": "^8.5.2",
-    "ts-md5": "^1.2.7",
     "@angular/animations": "~9.1.9",
     "@angular/common": "~9.1.9",
     "@angular/compiler": "~9.1.9",
@@ -21,6 +19,8 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
+    "jwt-decode": "^2.2.0",
+    "ng-zorro-antd": "^8.5.2",
     "rxjs": "~6.5.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
