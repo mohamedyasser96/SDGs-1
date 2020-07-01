@@ -13,4 +13,18 @@ export class PsService {
   register(userInfo): Observable<any> {
     return this.http.post(`${ip}/privateSector/register`, userInfo)
   }
+  getPS(): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+      headers.append('Content-Type', 'application/json');
+      headers.append('Access-Control-Allow-Origin', '*');
+      this.http.get(`${ip}/privateSector`, { headers: headers }).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        })
+    })
+    return promise;
+  }
 }
