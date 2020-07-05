@@ -26,7 +26,7 @@ registerLocaleData(en);
     LoginComponent,
     PsProfileComponent,
     PsNavBarComponent,
-    ProjectsHomeComponent
+    ProjectsHomeComponent,
     NgoNavBarComponent,
     NgoProfileComponent
 
