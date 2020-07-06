@@ -30,6 +30,7 @@ const routes: Routes = [
     component:ProjectsHomeComponent
   },
   {
+  },{
     path:'ngo/profile',
     component:NgoProfileComponent
   },

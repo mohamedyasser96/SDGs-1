@@ -15,16 +15,7 @@ export class PsProfileComponent implements OnInit {
 
  async ngOnInit() {
     this.loading = true;
-    this.ps = await this.retrievePS();
+    this.ps = JSON.parse(localStorage.getItem('info'))
     this.loading = false;
-  }
-  async retrievePS() {
-    try {
-      const ps = await this.privateSectorService.getPS();
-      console.log(ps)
-      return ps;
-    } catch (err) {
-        alert(err.error.message);
-    }
   }
 }
