@@ -8,6 +8,7 @@ import { ProjectsHomeComponent } from './projects/home-page/projects-home/projec
 import { NgoProfileComponent } from './ngo/ngo-profile/ngo-profile.component';
 
 
+
 const routes: Routes = [
   {
     path: 'register',

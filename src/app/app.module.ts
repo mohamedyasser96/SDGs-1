@@ -29,6 +29,7 @@ registerLocaleData(en);
     ProjectsHomeComponent,
     NgoNavBarComponent,
     NgoProfileComponent
+
   ],
   imports: [
     BrowserModule,
