@@ -29,8 +29,6 @@ const routes: Routes = [
   {
     path:'projects/home',
     component:ProjectsHomeComponent
-  },
-  {
   },{
     path:'ngo/profile',
     component:NgoProfileComponent

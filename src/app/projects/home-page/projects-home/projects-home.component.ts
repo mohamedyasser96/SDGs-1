@@ -60,12 +60,11 @@ export class ProjectsHomeComponent implements OnInit {
         'name': this.validateForm.value.name,
         "aim": this.validateForm.value.aim,
         "duration": this.validateForm.value.duration,
-        "peopletargeted": this.validateForm.value.people,
+        "peopleTargeted": this.validateForm.value.people,
         "resource": this.Resources,
         "workLocation": this.Locations,
         "intendedSDG": this.SDGs
       }
-      console.log(project)
       this.projectService.addProject(project).subscribe(
         (res) => {
           alert('success');
