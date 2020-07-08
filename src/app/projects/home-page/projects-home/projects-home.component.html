@@ -38,7 +38,7 @@
   [(nzVisible)]="isVisible"
   nzTitle="Create New Project"
   (nzOnCancel)="handleCancel()"
-  (nzOnOk)="submitForm()"
+  (nzOnOk)="addProject()"
 >
   <form nz-form [formGroup]="validateForm">
     <nz-form-item>
@@ -97,6 +97,60 @@
           <input nz-input formControlName="people" id="people" />
         </nz-input-group>
       </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired
+        >Intended SDGs</nz-form-label
+      >
+      <nz-select
+        style="max-width: 40%;"
+        nzMode="multiple"
+        nzPlaceHolder="Please Select "
+        [(ngModel)]="SDGs"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <nz-option
+          *ngFor="let option of listOfSDGs"
+          [nzLabel]="option.name"
+          [nzValue]="option.id"
+        ></nz-option>
+      </nz-select>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired
+        >Resources To Provide</nz-form-label
+      >
+      <nz-select
+        style="max-width: 40%;"
+        nzMode="multiple"
+        nzPlaceHolder="Please Select "
+        [(ngModel)]="Resources"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <nz-option
+          *ngFor="let option of listOfResources"
+          [nzLabel]="option.name"
+          [nzValue]="option.id"
+        ></nz-option>
+      </nz-select>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired
+        >Work Locations</nz-form-label
+      >
+      <nz-select
+        style="max-width: 40%;"
+        nzMode="multiple"
+        nzPlaceHolder="Please Select "
+        [(ngModel)]="Locations"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <nz-option
+          *ngFor="let option of listOfLocations"
+          [nzLabel]="option.area"
+          [nzValue]="option.id"
+        ></nz-option>
+      </nz-select>
     </nz-form-item>
   </form>
 </nz-modal>

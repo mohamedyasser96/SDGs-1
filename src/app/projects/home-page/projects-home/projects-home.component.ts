@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ProjectService } from 'src/app/services/project.service';
+import { SDGsService } from 'src/app/services/sdgs.service';
+import { LocationsService } from 'src/app/services/locations.service';
+import { ResourcesService } from 'src/app/services/resources.service';
 
 @Component({
   selector: 'app-projects-home',
@@ -11,26 +15,25 @@ export class ProjectsHomeComponent implements OnInit {
   isVisible: boolean;
   validateForm!: FormGroup;
   isPS: boolean;
+  listOfSDGs = [];
+  listOfLocations = [];
+  listOfResources = [];
+  SDGs = [];
+  Locations = [];
+  Resources = [];
   projects = [];
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private projectService: ProjectService, private sdgsService: SDGsService,
+              private locationsService: LocationsService,
+              private resourcesService: ResourcesService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.validation();
+    this.projects = await this.projectService.getProjects();
+    this.listOfLocations = await this.locationsService.getLocations();
+    this.listOfResources = await this.resourcesService.getResources();
+    this.listOfSDGs = await this.sdgsService.getSDGs();
     //TODO check if token is PS or NGO for nav-bar
-    this.isPS  = true;
-    // Data to test projects
-    // this.projects.push({
-    //    name: 'project 1',
-    //    aim: 'ZeroHunger'
-    //  });
-    // this.projects.push({
-    //    name: 'project 2',
-    //    aim: 'Peace'
-    //  });
-    // this.projects.push({
-    //   name: 'project 2',
-    //   aim: 'Peace'
-    // });
+    this.isPS = true;
   }
 
   validation() {
@@ -46,11 +49,35 @@ export class ProjectsHomeComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    if(this.validateForm.status == "VALID") {
-      this.isVisible = false;
-      this.validateForm.reset();
+  }
+
+  addProject() {
+    this.submitForm();
+    if (this.Resources.length != 0 &&
+      this.SDGs.length != 0 &&
+      this.Locations.length != 0) {
+      let project = {
+        'name': this.validateForm.value.name,
+        "aim": this.validateForm.value.aim,
+        "duration": this.validateForm.value.duration,
+        "peopleTargeted": this.validateForm.value.people,
+        "resource": this.Resources,
+        "workLocation": this.Locations,
+        "intendedSDG": this.SDGs
+      }
+      this.projectService.addProject(project).subscribe(
+        (res) => {
+          alert('success');
+          this.isVisible = false;
+          this.validateForm.reset();
+        },
+        (err) => {
+          alert(err.error);
+        }
+      );
     }
   }
+
   showCreateProject(): void {
     this.isVisible = true;
   }
