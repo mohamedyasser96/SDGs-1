@@ -16,6 +16,7 @@ import { PsNavBarComponent } from './private-sector/ps-nav-bar/ps-nav-bar.compon
 import { ProjectsHomeComponent } from './projects/home-page/projects-home/projects-home.component';
 import { NgoNavBarComponent } from './ngo/ngo-nav-bar/ngo-nav-bar.component';
 import { NgoProfileComponent } from './ngo/ngo-profile/ngo-profile.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 
 registerLocaleData(en);
 
@@ -28,7 +29,8 @@ registerLocaleData(en);
     PsNavBarComponent,
     ProjectsHomeComponent,
     NgoNavBarComponent,
-    NgoProfileComponent
+    NgoProfileComponent,
+    ProjectDetailsComponent
 
   ],
   imports: [

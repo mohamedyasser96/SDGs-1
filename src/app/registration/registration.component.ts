@@ -12,6 +12,7 @@ import { DirectionsService } from '../services/directions.service';
 import { ResourcesService } from '../services/resources.service';
 import { SDGsService } from '../services/sdgs.service';
 import { PsService } from '../services/ps.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -33,14 +34,14 @@ export class RegistrationComponent implements OnInit {
   Directions = [];
   Resources = [];
   fileList = [];
-  router: any;
 
   constructor(private fb: FormBuilder, private ngoService: NgoService,
     private sdgsService: SDGsService,
     private psService: PsService,
     private locationsService: LocationsService,
     private directionsService: DirectionsService,
-    private resourcesService: ResourcesService) { }
+    private resourcesService: ResourcesService,
+    private router: Router) { }
 
   async ngOnInit() {
     this.validateNGOForm();
