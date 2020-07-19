@@ -17,6 +17,10 @@ import { ProjectsHomeComponent } from './projects/home-page/projects-home/projec
 import { NgoNavBarComponent } from './ngo/ngo-nav-bar/ngo-nav-bar.component';
 import { NgoProfileComponent } from './ngo/ngo-profile/ngo-profile.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminNavBarComponent } from './admin/admin-nav-bar/admin-nav-bar.component';
+import { ChartsModule } from 'ng2-charts';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 registerLocaleData(en);
 
@@ -30,7 +34,9 @@ registerLocaleData(en);
     ProjectsHomeComponent,
     NgoNavBarComponent,
     NgoProfileComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    AdminHomeComponent,
+    AdminNavBarComponent
 
   ],
   imports: [
@@ -40,7 +46,9 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     NgZorroAntdModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ChartsModule,
+    GoogleChartsModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

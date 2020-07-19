@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <div class="side-div">
+        <div class="opacity">
+            <h1 style="text-align: center;">{{admin.name}}</h1>
+            <h3 style="text-align: center;">{{admin.email}}</h3>
+        </div>
+        <div class="nav">
+            <app-admin-nav-bar></app-admin-nav-bar>
+        </div>
+    </div>
+    <div class="middle-div">
+        <div class="card-div">
+            <div class="card">
+                <canvas class="chart" baseChart [data]="sdgsChartData" [labels]="sdgsChartLabels"
+                    [options]="chartOptions" [chartType]="sdgsChartType" [colors]="sdgsChartColors"></canvas>
+                <!-- <google-chart id = "myChart" [title]="chart.title" [type]="chart.type" [data]="chart.data" [columns]="chart.columnNames" [options]="chart.options">
+                    </google-chart> -->
+            </div>
+        </div>
+    </div>
+</div>
