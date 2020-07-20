@@ -7,6 +7,8 @@ import { PsProfileComponent } from './private-sector/ps-profile/ps-profile.compo
 import { ProjectsHomeComponent } from './projects/home-page/projects-home/projects-home.component';
 import { NgoProfileComponent } from './ngo/ngo-profile/ngo-profile.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component'
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+
 
 
 const routes: Routes = [
@@ -31,16 +33,16 @@ const routes: Routes = [
     component: ProjectsHomeComponent
   },
   {
-    path:'projects/home',
-    component:ProjectsHomeComponent
-  },
-  {
     path: 'projects/details',
     component: ProjectDetailsComponent
   },
   {
     path: 'ngo/profile',
     component: NgoProfileComponent
+  },
+  {
+    path: 'admin/home',
+    component: AdminHomeComponent
   },
 ];
 
