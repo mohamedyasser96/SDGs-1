@@ -4,7 +4,7 @@ import { ProjectService } from 'src/app/services/project.service';
 import { SDGsService } from 'src/app/services/sdgs.service';
 import { LocationsService } from 'src/app/services/locations.service';
 import { ResourcesService } from 'src/app/services/resources.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-projects-home',
   templateUrl: './projects-home.component.html',
@@ -22,13 +22,14 @@ export class ProjectsHomeComponent implements OnInit {
   Locations = [];
   Resources = [];
   projects = [];
-  constructor(private fb: FormBuilder, private projectService: ProjectService, private sdgsService: SDGsService,
+  constructor(private fb: FormBuilder, private ProjectService: ProjectService, private sdgsService: SDGsService,
               private locationsService: LocationsService,
-              private resourcesService: ResourcesService) { }
+              private resourcesService: ResourcesService,
+              private router: Router) { }
 
   async ngOnInit() {
     this.validation();
-    this.projects = await this.projectService.getProjects();
+    this.projects = await this.ProjectService.getProjects();
     this.listOfLocations = await this.locationsService.getLocations();
     this.listOfResources = await this.resourcesService.getResources();
     this.listOfSDGs = await this.sdgsService.getSDGs();
@@ -65,7 +66,7 @@ export class ProjectsHomeComponent implements OnInit {
         "workLocation": this.Locations,
         "intendedSDG": this.SDGs
       }
-      this.projectService.addProject(project).subscribe(
+      this.ProjectService.addProject(project).subscribe(
         (res) => {
           alert('success');
           this.isVisible = false;
@@ -83,5 +84,9 @@ export class ProjectsHomeComponent implements OnInit {
   }
   handleCancel(): void {
     this.isVisible = false;
+  }
+  pro(project){
+    this.ProjectService.storeProject(project)
+    this.router.navigate(['projects/details'])
   }
 }

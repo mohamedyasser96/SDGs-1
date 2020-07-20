@@ -22,8 +22,8 @@
       <app-ngo-nav-bar></app-ngo-nav-bar>
     </div> -->
     <div id="content" *ngIf="projects.length > 0">
-      <div class="card" *ngFor="let project of projects">
-        <img src="../../../../assets/project2.svg" class="img" />
+      <div class="card" *ngFor="let project of projects" (click) = "pro(project)">
+        <img src="../../../../assets/project2.svg" class="img"/>
         <h2>{{ project.name }}</h2>
         <h5>{{ project.aim }}</h5>
       </div>

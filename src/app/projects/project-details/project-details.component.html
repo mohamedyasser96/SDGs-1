@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="project-details-card" *ngIf="project">
+            <nz-card nzTitle="{{project.name}}">
+                <div class="in-card">
+                    <!-- <div class="entry"> -->
+                    <h4>Aim:</h4>
+                    <img style="margin-left: 3%; margin-right: 3%;" src="../../../assets/sdgs/{{project.aim}}.png" />
+                    <!-- </div> -->
+                    <h4>Resources:</h4>
+                    <div class="entry">
+                        <p *ngFor="let resource of project.resources">{{resource.name}}</p>
+                    </div>
+                    <h4>Work Locations:</h4>
+                    <div class="entry">
+                        <p *ngFor="let location of project.workLocations">{{location.area}}</p>
+                    </div>
+                    <h4>SDGs:</h4>
+                    <div class="entry">
+                        <p *ngFor="let sdg of project.intendedSDGs">{{sdg.name}}</p>
+                    </div>
+                    <h4>Duration:</h4>
+                    <div class="entry">
+                        <p>{{project.duration}} days</p>
+                    </div>
+                    <h4>People targeted: </h4>
+                    <div class="entry">
+                        <p>{{project.peopleTargeted}}</p>
+                    </div>
+                    <h4>Created by: </h4>
+                    <div class="entry">
+                        <p>NGO or PS</p>
+                    </div>
+                </div>
+            </nz-card>
+        </div>
+    </div>
+    <div class="content-wrapper" *ngIf="project">
+        <h2 style="align-self: center; padding-top: 1%;">Q&A</h2>
+        <button nz-button nzType="default" class="button" (click)="showAskQuestion()">
+            Ask Question
+        </button>
+        <h2 style="align-self: center; padding-top: 1%;" *ngIf="project.discussions.length == 0">No questions have been posted yet</h2>
+        <div class="discussion" *ngFor="let discussion of project.discussions">
+            <nz-card nzTitle="Q: {{discussion.question}}">
+                <p>A: {{discussion.answer}}</p>
+            </nz-card>
+        </div>
+    </div>
+</div>
+<nz-modal [(nzVisible)]="showAskQuestionModal" nzTitle="Ask Question" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="submitQuestion()">
+    <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+            <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="question">Question</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Question!">
+                <input nz-input formControlName="question" id="question" />
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

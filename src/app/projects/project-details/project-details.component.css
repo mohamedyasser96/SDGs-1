@@ -1,0 +1,86 @@
+:host {
+    height: 100%;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  .wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    align-items: center;
+    background-color: #f7f8fa;
+  }
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 331pt;
+    -webkit-text-size-adjust: none;
+    flex-direction: column;
+    background: #007db8;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 125, 184, 1) 0%,
+      rgba(203, 226, 238, 1) 82%,
+      rgba(247, 248, 250, 1) 100%
+    );
+  }
+.content-wrapper {
+    background-image: url(../../../assets/projects-home.svg) fixed no-repeat bottom right;
+    background-position: right bottom;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-size: 75% 100%;
+    bottom: 0;
+    background-repeat: no-repeat;
+    flex-direction: column;
+  }
+  .project-details-card{
+      width:90%;
+      padding-top:3%;
+  }
+  .in-card{
+      display: flex;
+      flex-direction: row;
+  }
+  .entry{
+    display: flex;
+    flex-direction: column;
+    width:fit-content;
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+  h2,
+  h4{
+      color: #007db8;
+      width:fit-content
+  }
+  img{
+    width: 12%;
+    height: 70%;
+    margin: 1%;
+  }
+  .discussion{
+    margin:1%;
+    width: 80%;
+    align-self: center;
+  }
+  .button {
+    font-size: large;
+    border-width: 2px;
+    background-color: #007db8;
+    color: white;
+    width: fit-content;
+    align-self: flex-end;
+    margin: 3%;
+  }
+  .button:hover {
+    background-color: white;
+    color: #007db8;
+  }
