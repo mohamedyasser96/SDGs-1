@@ -10,6 +10,7 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 
 
+
 const routes: Routes = [
   {
     path: 'register',
