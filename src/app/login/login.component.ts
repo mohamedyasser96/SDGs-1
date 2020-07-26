@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", res.token)
         let info = jwt_decode(res.token)
         localStorage.setItem("info", JSON.stringify(info))
-        if (info.type == "com.techdev.sdg.NGO.NGO")
+        if (info.type == "NGO")
           this.router.navigate(['/ngo/profile'])
-        else if (info.type == "com.techdev.sdg.PrivateSector.PrivateSector")
+        else if (info.type == "PrivateSector")
           this.router.navigate(['privateSector/profile'])
       }, err => {
         alert("invalid login")

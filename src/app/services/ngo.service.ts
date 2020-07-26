@@ -13,4 +13,19 @@ export class NgoService {
   register(userInfo): Observable<any> {
     return this.http.post(`${ip}/ngo/register`, userInfo)
   }
+
+  getNGOs(): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+      headers.append('Content-Type', 'application/json');
+      headers.append('Access-Control-Allow-Origin', '*');
+      this.http.get(`${ip}/ngo`, { headers: headers }).toPromise()
+        .then(res => {
+          resolve(res);
+        }, err => {
+          reject(err);
+        })
+    })
+    return promise;
+  }
 }

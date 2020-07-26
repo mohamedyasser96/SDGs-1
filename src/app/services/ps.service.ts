@@ -13,6 +13,7 @@ export class PsService {
   register(userInfo): Observable<any> {
     return this.http.post(`${ip}/privateSector/register`, userInfo)
   }
+  
   getPS(): Promise<any> {
     let promise = new Promise((resolve, reject) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
