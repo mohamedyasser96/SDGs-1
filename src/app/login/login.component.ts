@@ -32,15 +32,15 @@ export class LoginComponent implements OnInit {
 
   submitClicked(): void {
     if (this.validateForm.valid) {
-      // let user = {
-      //   "username": this.validateForm.value.username,
-      //   "password": Md5.hashStr(this.validateForm.value.password),
-      // }
-
       let user = {
         "username": this.validateForm.value.username,
-        "password":this.validateForm.value.password,
+        "password": Md5.hashStr(this.validateForm.value.password),
       }
+
+      // let user = {
+      //   "username": this.validateForm.value.username,
+      //   "password":this.validateForm.value.password,
+      // }
       this.userService.login(user).subscribe(res => {
         localStorage.setItem("token", res.token)
         let info = jwt_decode(res.token)
