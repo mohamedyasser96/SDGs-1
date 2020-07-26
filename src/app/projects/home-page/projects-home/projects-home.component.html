@@ -2,13 +2,7 @@
   <div class="header">
     <div class="left-header">
       <h1>PROJECTS</h1>
-      <button
-        nz-button
-        nzType="default"
-        nzGhost
-        class="button"
-        (click)="showCreateProject()"
-      >
+      <button nz-button nzType="default" nzGhost class="button" (click)="showCreateProject()">
         Create Project
       </button>
     </div>
@@ -22,8 +16,8 @@
       <app-ngo-nav-bar></app-ngo-nav-bar>
     </div> -->
     <div id="content" *ngIf="projects.length > 0">
-      <div class="card" *ngFor="let project of projects" (click) = "pro(project)">
-        <img src="../../../../assets/project2.svg" class="img"/>
+      <div class="card" *ngFor="let project of projects" (click)="pro(project)">
+        <img src="../../../../assets/project2.svg" class="img" />
         <h2>{{ project.name }}</h2>
         <h5>{{ project.aim }}</h5>
       </div>
@@ -34,123 +28,75 @@
   </div>
 </div>
 
-<nz-modal
-  [(nzVisible)]="isVisible"
-  nzTitle="Create New Project"
-  (nzOnCancel)="handleCancel()"
-  (nzOnOk)="addProject()"
->
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Create New Project" (nzOnCancel)="handleCancel()" (nzOnOk)="addProject()">
   <form nz-form [formGroup]="validateForm">
     <nz-form-item>
-      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="name"
-        >Project Name</nz-form-label
-      >
-      <nz-form-control
-        [nzSm]="14"
-        [nzXs]="24"
-        nzErrorTip="The input is not valid Name!"
-      >
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="name">Project Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Name!">
         <input nz-input formControlName="name" id="name" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="aim"
-        >Project Aim</nz-form-label
-      >
-      <nz-form-control
-        [nzSm]="14"
-        [nzXs]="24"
-        nzErrorTip="The input is not valid Aim!"
-      >
-        <textarea
-          nz-input
-          formControlName="aim"
-          id="aim"
-          [nzAutosize]="{ minRows: 2, maxRows: 4 }"
-        ></textarea>
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="aim">Project Aim</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Aim!">
+        <textarea nz-input formControlName="aim" id="aim" [nzAutosize]="{ minRows: 2, maxRows: 4 }"></textarea>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="duration"
-        >Project Duration</nz-form-label
-      >
-      <nz-form-control
-        [nzSm]="6"
-        [nzXs]="24"
-        nzErrorTip="The input is not valid Duration!"
-      >
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="duration">Project Duration</nz-form-label>
+      <nz-form-control [nzSm]="6" [nzXs]="24" nzErrorTip="The input is not valid Duration!">
         <nz-input-group nzSuffix="Days">
           <input nz-input formControlName="duration" id="duration" />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="people"
-        >No. of People Targeted</nz-form-label
-      >
-      <nz-form-control
-        [nzSm]="6"
-        [nzXs]="24"
-        nzErrorTip="The input is not valid Number of People Targeted!"
-      >
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="people">No. of People Targeted</nz-form-label>
+      <nz-form-control [nzSm]="6" [nzXs]="24" nzErrorTip="The input is not valid Number of People Targeted!">
         <nz-input-group nzSuffix="Person">
           <input nz-input formControlName="people" id="people" />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired
-        >Intended SDGs</nz-form-label
-      >
-      <nz-select
-        style="max-width: 40%;"
-        nzMode="multiple"
-        nzPlaceHolder="Please Select "
-        [(ngModel)]="SDGs"
-        [ngModelOptions]="{ standalone: true }"
-      >
-        <nz-option
-          *ngFor="let option of listOfSDGs"
-          [nzLabel]="option.name"
-          [nzValue]="option.id"
-        ></nz-option>
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired>Intended SDGs</nz-form-label>
+      <nz-select style="max-width: 40%;" nzMode="multiple" nzPlaceHolder="Please Select " [(ngModel)]="SDGs"
+        [ngModelOptions]="{ standalone: true }">
+        <nz-option *ngFor="let option of listOfSDGs" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
       </nz-select>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired
-        >Resources To Provide</nz-form-label
-      >
-      <nz-select
-        style="max-width: 40%;"
-        nzMode="multiple"
-        nzPlaceHolder="Please Select "
-        [(ngModel)]="Resources"
-        [ngModelOptions]="{ standalone: true }"
-      >
-        <nz-option
-          *ngFor="let option of listOfResources"
-          [nzLabel]="option.name"
-          [nzValue]="option.id"
-        ></nz-option>
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired>Resources To Provide</nz-form-label>
+      <nz-select style="max-width: 40%;" nzMode="multiple" nzPlaceHolder="Please Select " [(ngModel)]="Resources"
+        [ngModelOptions]="{ standalone: true }">
+        <nz-option *ngFor="let option of listOfResources" [nzLabel]="option.name" [nzValue]="option.id"></nz-option>
       </nz-select>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired
-        >Work Locations</nz-form-label
-      >
-      <nz-select
-        style="max-width: 40%;"
-        nzMode="multiple"
-        nzPlaceHolder="Please Select "
-        [(ngModel)]="Locations"
-        [ngModelOptions]="{ standalone: true }"
-      >
-        <nz-option
-          *ngFor="let option of listOfLocations"
-          [nzLabel]="option.area"
-          [nzValue]="option.id"
-        ></nz-option>
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired>Work Locations</nz-form-label>
+      <nz-select style="max-width: 40%;" nzMode="multiple" nzPlaceHolder="Please Select " [(ngModel)]="Locations"
+        [ngModelOptions]="{ standalone: true }">
+        <nz-option *ngFor="let option of listOfLocations" [nzLabel]="option.area" [nzValue]="option.id"></nz-option>
       </nz-select>
     </nz-form-item>
+    <nz-form-item class="radio-group-wrapper">
+      <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired>Access Rights</nz-form-label>
+      <nz-radio-group [(ngModel)]="radioValue" [ngModelOptions]="{ standalone: true }">
+        <label nz-radio nzValue="Private Sectors">Private Sectors</label>
+        <label nz-radio nzValue="NGOs">NGOs</label>
+        <label nz-radio nzValue="Specific">Specific</label>
+        <label nz-radio nzValue="All">All</label>
+      </nz-radio-group>
+    </nz-form-item>
+    <div class="select-wrapper" *ngIf="radioValue == 'Specific'">
+      <nz-select style="max-width: 40%; margin-right: 2%;" nzMode="multiple" nzPlaceHolder="Private Sectors" [(ngModel)]="selectedPrivateSectors"
+        [ngModelOptions]="{ standalone: true }">
+        <nz-option *ngFor="let ps of privateSectors" [nzLabel]="ps.name" [nzValue]="ps.name"></nz-option>
+      </nz-select>
+      <nz-select style="max-width: 40%;" nzMode="multiple" nzPlaceHolder="NGOs" [(ngModel)]="selectedNGOs"
+        [ngModelOptions]="{ standalone: true }">
+        <nz-option *ngFor="let ngo of ngos" [nzLabel]="ngo.name" [nzValue]="ngo.name"></nz-option>
+      </nz-select>
+    </div>
   </form>
 </nz-modal>

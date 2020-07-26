@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <div class="side-div">
+        <div>
+            <h1 style="text-align: center;">{{admin.name}}</h1>
+            <h3 style="text-align: center;">{{admin.email}}</h3>
+        </div>
+        <div class="nav">
+            <app-admin-nav-bar></app-admin-nav-bar>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <h1>Sign-up Requests</h1>
+        <nz-table #basicTable [nzData]="signupRequests">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data; let i = index;">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.type }}</td>
+                    <td>
+                        <a (click)="approveRequest(data.id, data.type)">Approve</a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <a (click)="showDetails(i)">View Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
+
+<nz-modal *ngIf="selectedEntityToView" [(nzVisible)]="detailsVisible" nzTitle={{selectedEntityToView.name}}
+    (nzOnCancel)="cancelDetails()" (nzOnOk)="cancelDetails()">
+
+    <div *ngFor="let key of selectedEntityToViewKeys; let i = index;">
+        <h3>{{key.toUpperCase()}}</h3>
+        <p>{{selectedEntityToViewValues[i]}}</p>
+        <nz-divider></nz-divider>
+    </div>
+    <div *ngIf="selectedEntityToView.type == 'NGO'">
+        <h3>Documents</h3>
+        <div *ngFor="let file of selectedEntityToView.files">
+            <button (click)=download(file)>Download</button>
+            <p>{{file.fileName}}</p>
+            <nz-divider></nz-divider>
+        </div>
+    </div>
+</nz-modal>
+
+<app-unauthorized *ngIf="unauthorized"></app-unauthorized>

@@ -1,6 +1,9 @@
 <nz-sider nzWidth="100%" nzTheme="light" style="z-index: 1;">
     <ul nz-menu nzMode="inline" class="sider-menu">
-      <li nz-menu-item>Home</li>
+      <li nz-menu-item (click)="routeToHome()">Home</li>
+    </ul>
+    <ul nz-menu nzMode="inline" class="sider-menu">
+      <li nz-menu-item (click)="routeToSignupRequests()">Sign-up Requests</li>
     </ul>
   </nz-sider>
   

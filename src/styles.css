@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.ant-modal-body {
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 432px;
+}

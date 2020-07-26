@@ -5,6 +5,8 @@ import { SDGsService } from 'src/app/services/sdgs.service';
 import { LocationsService } from 'src/app/services/locations.service';
 import { ResourcesService } from 'src/app/services/resources.service';
 import { Router } from '@angular/router';
+import { PsService } from 'src/app/services/ps.service';
+import { NgoService } from 'src/app/services/ngo.service';
 @Component({
   selector: 'app-projects-home',
   templateUrl: './projects-home.component.html',
@@ -18,14 +20,26 @@ export class ProjectsHomeComponent implements OnInit {
   listOfSDGs = [];
   listOfLocations = [];
   listOfResources = [];
+  privateSectors: any;
+  ngos: any;
+  selectedPrivateSectors: any;
+  selectedNGOs: any;
   SDGs = [];
   Locations = [];
   Resources = [];
   projects = [];
-  constructor(private fb: FormBuilder, private ProjectService: ProjectService, private sdgsService: SDGsService,
-              private locationsService: LocationsService,
-              private resourcesService: ResourcesService,
-              private router: Router) { }
+  radioValue = null;
+
+  constructor(
+    private fb: FormBuilder,
+    private ProjectService: ProjectService,
+    private sdgsService: SDGsService,
+    private locationsService: LocationsService,
+    private resourcesService: ResourcesService,
+    private privateSectorService: PsService,
+    private ngoService: NgoService,
+    private router: Router
+  ) { }
 
   async ngOnInit() {
     this.validation();
@@ -33,6 +47,8 @@ export class ProjectsHomeComponent implements OnInit {
     this.listOfLocations = await this.locationsService.getLocations();
     this.listOfResources = await this.resourcesService.getResources();
     this.listOfSDGs = await this.sdgsService.getSDGs();
+    this.privateSectors = await this.privateSectorService.getPS();
+    this.ngos = await this.ngoService.getNGOs();
     //TODO check if token is PS or NGO for nav-bar
     this.isPS = true;
   }
@@ -85,7 +101,7 @@ export class ProjectsHomeComponent implements OnInit {
   handleCancel(): void {
     this.isVisible = false;
   }
-  pro(project){
+  pro(project) {
     this.ProjectService.storeProject(project)
     this.router.navigate(['projects/details'])
   }
