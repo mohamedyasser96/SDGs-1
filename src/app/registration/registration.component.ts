@@ -187,7 +187,7 @@ export class RegistrationComponent implements OnInit {
         'name': this.validatePS.value.name,
         "email": this.validatePS.value.email,
         "password": Md5.hashStr(this.validatePS.value.password),
-        'mainContact': this.validatePS.value.mainContact,
+        'contact': this.validatePS.value.mainContact,
         "resource": this.Resources,
         "directionToImpact": this.Directions,
         "workLocation": this.Locations,
