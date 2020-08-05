@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-admin-home',
@@ -54,6 +55,11 @@ export class AdminHomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let tokenInfo = jwt_decode(localStorage.getItem('token'));
+    this.admin = {
+      email: tokenInfo.email,
+      name: 'Admin'
+    }
   //   // var visualization = new google.visualization.GeoChart(document.getElementById("myChart"));
   //   google.charts.load('current', {
   //     'packages': ['geochart'],

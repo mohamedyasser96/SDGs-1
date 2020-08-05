@@ -36,6 +36,11 @@ export class LoginComponent implements OnInit {
         "username": this.validateForm.value.username,
         "password": Md5.hashStr(this.validateForm.value.password),
       }
+
+      // let user = {
+      //   "username": this.validateForm.value.username,
+      //   "password":this.validateForm.value.password,
+      // }
       this.userService.login(user).subscribe(res => {
         localStorage.setItem("token", res.token)
         let info = jwt_decode(res.token)
@@ -44,6 +49,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/ngo/profile'])
         else if (info.type == "PrivateSector")
           this.router.navigate(['privateSector/profile'])
+        else if (info.type == "Admin") 
+          this.router.navigate(['admin/home'])
       }, err => {
         alert("invalid login")
       })
