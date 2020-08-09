@@ -8,6 +8,12 @@
     </div>
     <img src="../../../../assets/arrow.svg" class="arrow" />
   </div>
+      <div class="filters">
+        <p>Filter by project's aim:</p>
+        <nz-select style = "width:15%" nzAllowClear nzPlaceHolder="Please Select Aim " [(ngModel)]="filterArgs.aim">
+          <nz-option *ngFor="let option of listOfSDGs" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
+        </nz-select>
+      </div>
   <div class="content-wrapper">
     <div class="nav-bar" *ngIf="isPS">
       <app-ps-nav-bar></app-ps-nav-bar>
@@ -16,7 +22,7 @@
       <app-ngo-nav-bar></app-ngo-nav-bar>
     </div> -->
     <div id="content" *ngIf="projects.length > 0">
-      <div class="card" *ngFor="let project of projects" (click)="pro(project)">
+      <div class="card" *ngFor="let project of projects | filter:filterArgs" (click)="pro(project)">
         <img src="../../../../assets/project2.svg" class="img" />
         <h2>{{ project.name }}</h2>
         <h5>{{ project.aim }}</h5>
