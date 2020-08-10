@@ -8,15 +8,16 @@ import { Router } from '@angular/router';
 })
 export class AdminNavBarComponent implements OnInit {
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  routeToHome() {
-    this.router.navigate(['admin/home']);
+  routeToHome(){
+    this.router.navigate(["admin/home"])
+  }
+  routeToAdmins(){
+    this.router.navigate(["admin/admins"])
   }
 
   routeToSignupRequests() {

@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="left-header">
+            <h1>Admins</h1>
+            <button nz-button nzType="default" nzGhost class="button" (click)="showAdminsModel()">
+                Add Admin
+            </button>
+        </div>
+        <img src="../../../../../assets/arrow.svg" class="arrow" />
+    </div>
+    <div class="content-wrapper">
+        <div class="nav-bar">
+            <app-admin-nav-bar></app-admin-nav-bar>
+        </div>
+        <div id="content">
+            <nz-table class = "table" #basicTable [nzData]="admins" [nzPageSize] = "5">
+                <thead>
+                    <tr>
+                        <th> Name</th>
+                        <th >Email</th>
+                        <th >Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.email }}</td>
+                        <td><a>Delete</a></td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add Admin" (nzOnCancel)="handleCancel()" (nzOnOk)="addAdmin()">
+    <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+            <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="name">User Name</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid UserName!">
+                <input nz-input formControlName="name" id="name" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="email">Email</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Email!">
+                <nz-input-group>
+                    <input nz-input formControlName="email" id="email" ngModel email="true" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="password">Password</nz-form-label>
+            <nz-form-control [nzSm]="6" [nzXs]="24" nzErrorTip="The input is not valid Password!">
+                <nz-input-group>
+                    <input nz-input formControlName="password" id="password" type="password" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

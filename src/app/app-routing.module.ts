@@ -8,7 +8,9 @@ import { ProjectsHomeComponent } from './projects/home-page/projects-home/projec
 import { NgoProfileComponent } from './ngo/ngo-profile/ngo-profile.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component'
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { AdminsComponent } from './admin/admins/admins.component';
 import { SignupRequestsComponent } from './admin/signup-requests/signup-requests.component';
+
 
 
 
@@ -44,6 +46,10 @@ const routes: Routes = [
   {
     path: 'admin/home',
     component: AdminHomeComponent
+  },
+  {
+    path: 'admin/admins',
+    component: AdminsComponent
   },
   {
     path: 'admin/signup-requests',
