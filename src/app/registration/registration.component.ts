@@ -161,7 +161,7 @@ export class RegistrationComponent implements OnInit {
         formData.append('intendedSDG', sdg);
       });
       this.fileList.forEach((file: any) => {
-        formData.append('files', file);
+        formData.append('file', file);
       });
       this.ngoService.register(formData).subscribe(
         (res) => {
@@ -205,4 +205,8 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  beforeUpload = (file: File) => {
+    this.fileList = this.fileList.concat(file);
+    return false;
+  }
 }
