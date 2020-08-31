@@ -26,6 +26,8 @@ import { AdminsComponent } from './admin/admins/admins.component';
 import { SignupRequestsComponent } from './admin/signup-requests/signup-requests.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
+import { HomeForumComponent } from './forum/home-forum/home-forum.component';
+import { ForumQuestionComponent } from './forum/forum-question/forum-question.component';
 
 
 registerLocaleData(en);
@@ -46,7 +48,9 @@ registerLocaleData(en);
     FilterPipe,
     AdminsComponent,
     SignupRequestsComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    HomeForumComponent,
+    ForumQuestionComponent
 
   ],
   imports: [

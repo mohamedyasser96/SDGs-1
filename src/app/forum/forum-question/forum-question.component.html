@@ -1,0 +1,37 @@
+<div class="wrapper" *ngIf="!loading" >
+    <div class="header">
+        <div class="left-header" *ngIf="question">
+            <h1>{{question.title}}</h1>
+            <nz-card style="margin : 1%; width:40%">
+                <p>{{question.question}}</p>
+            </nz-card>
+            <button nz-button nzType="default" nzGhost class="button" (click)="showReply()">
+                Reply
+            </button>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="nav-bar">
+            <app-ps-nav-bar></app-ps-nav-bar>
+        </div>
+        <div class="discussion" *ngIf="question">
+            <div *ngFor="let answer of question.answers">
+                <nz-card style="margin : 2%;" nzTitle="{{answer.by}}">
+                    <p>{{answer.answer}}</p>
+                </nz-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nz-modal [(nzVisible)]="showReplyModal" nzTitle="Reply" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="submitReply()">
+    <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+            <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="answer">Answer</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Answer!">
+                <textarea nz-input formControlName="answer" id="answer"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

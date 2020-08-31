@@ -102,7 +102,7 @@ export class SignupRequestsComponent implements OnInit {
 
   async approveRequest(id, type) {
     try {
-      await this.adminService.approveRequest(id, type);
+      await this.adminService.approveRequest(id);
       await this.retrieveSignupRequests();
       alert("Request approved")
     } catch (err) {

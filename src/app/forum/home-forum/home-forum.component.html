@@ -1,0 +1,48 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="left-header">
+            <h1>FORUM</h1>
+            <button nz-button nzType="default" nzGhost class="button" (click)="showAskQuestion()">
+                Ask Question
+              </button>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="nav-bar">
+            <app-ps-nav-bar></app-ps-nav-bar>
+        </div>
+        <div id="content">
+            <nz-table class = "table" #basicTable [nzData]="questions" [nzPageSize] = "5">
+                <thead>
+                    <tr>
+                        <th> Question</th>
+                        <th >By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data">
+                        <td style = "width:80%" (click) = "viewQuestion(data.id)">{{ data.question }}</td>
+                        <td (click) = "viewQuestion(data.id)">{{ data.submitter.name }}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
+<nz-modal [(nzVisible)]="showAskQuestionModal" nzTitle="Ask Question" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="submitQuestion()">
+    <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+            <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="title">Title</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid title!">
+                <input nz-input formControlName="title" id="title"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="9" [nzXs]="24" nzRequired nzFor="question">Question</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid Question!">
+                <textarea nz-input formControlName="question" id="question"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

@@ -10,7 +10,8 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { AdminsComponent } from './admin/admins/admins.component';
 import { SignupRequestsComponent } from './admin/signup-requests/signup-requests.component';
-
+import { HomeForumComponent } from './forum/home-forum/home-forum.component';
+import { ForumQuestionComponent } from './forum/forum-question/forum-question.component';
 
 
 
@@ -54,7 +55,16 @@ const routes: Routes = [
   {
     path: 'admin/signup-requests',
     component: SignupRequestsComponent
-  }
+  },
+  {
+    path: 'forum/home',
+    component: HomeForumComponent
+  },
+  {
+    path: 'forum/question',
+    component: ForumQuestionComponent
+  },
+  
 ];
 
 @NgModule({
