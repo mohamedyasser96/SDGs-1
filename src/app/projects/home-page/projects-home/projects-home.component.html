@@ -97,11 +97,11 @@
     <div class="select-wrapper" *ngIf="radioValue == 'Specific'">
       <nz-select style="max-width: 40%; margin-right: 2%;" nzMode="multiple" nzPlaceHolder="Private Sectors" [(ngModel)]="selectedPrivateSectors"
         [ngModelOptions]="{ standalone: true }">
-        <nz-option *ngFor="let ps of privateSectors" [nzLabel]="ps.name" [nzValue]="ps.name"></nz-option>
+        <nz-option *ngFor="let ps of privateSectors" [nzLabel]="ps.name" [nzValue]="ps.id"></nz-option>
       </nz-select>
       <nz-select style="max-width: 40%;" nzMode="multiple" nzPlaceHolder="NGOs" [(ngModel)]="selectedNGOs"
         [ngModelOptions]="{ standalone: true }">
-        <nz-option *ngFor="let ngo of ngos" [nzLabel]="ngo.name" [nzValue]="ngo.name"></nz-option>
+        <nz-option *ngFor="let ngo of ngos" [nzLabel]="ngo.name" [nzValue]="ngo.id"></nz-option>
       </nz-select>
     </div>
   </form>

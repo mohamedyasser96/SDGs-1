@@ -36,6 +36,9 @@
         </div>
     </div>
     <div class="content-wrapper" *ngIf="project">
+        <button nz-button nzType="default" class="button" (click)="joinProject()">
+            Join Project
+        </button>
         <h2 style="align-self: center; padding-top: 1%;">Q&A</h2>
         <button nz-button nzType="default" class="button" (click)="showAskQuestion()">
             Ask Question

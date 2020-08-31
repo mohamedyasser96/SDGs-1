@@ -20,16 +20,17 @@ export class ProjectsHomeComponent implements OnInit {
   listOfSDGs = [];
   listOfLocations = [];
   listOfResources = [];
-  privateSectors: any;
-  ngos: any;
-  selectedPrivateSectors: any;
-  selectedNGOs: any;
+  privateSectors=[];
+  ngos=[];
+  selectedPrivateSectors =[];
+  selectedNGOs=[];
   SDGs = [];
   Locations = [];
   Resources = [];
   projects = [];
   filterArgs = {"aim":""}; 
   radioValue = null;
+  viewers = [];
 
   constructor(
     private fb: FormBuilder,
@@ -44,12 +45,12 @@ export class ProjectsHomeComponent implements OnInit {
 
   async ngOnInit() {
     this.validation();
-    this.projects = await this.ProjectService.getProjects();
     this.listOfLocations = await this.locationsService.getLocations();
     this.listOfResources = await this.resourcesService.getResources();
     this.listOfSDGs = await this.sdgsService.getSDGs();
     this.privateSectors = await this.privateSectorService.getPS();
     this.ngos = await this.ngoService.getNGOs();
+    this.projects = await this.ProjectService.getProjects();
     //TODO check if token is PS or NGO for nav-bar
     this.isPS = true;
   }
@@ -70,10 +71,33 @@ export class ProjectsHomeComponent implements OnInit {
   }
 
   addProject() {
+    this.viewers = [];
     this.submitForm();
     if (this.Resources.length != 0 &&
       this.SDGs.length != 0 &&
       this.Locations.length != 0) {
+        if(this.radioValue == "All"){
+          this.ngos.forEach(ngo => {
+            this.viewers.push(ngo.id)
+          });
+          this.privateSectors.forEach(ps => {
+            this.viewers.push(ps.id)
+          });
+        }
+        else if(this.radioValue == "Private Sectors"){
+          this.privateSectors.forEach(ps => {
+            this.viewers.push(ps.id)
+          });
+        }
+        else if(this.radioValue == "NGOs"){
+          this.ngos.forEach(ngo => {
+            this.viewers.push(ngo.id)
+          });
+        }
+        else if(this.radioValue == "Specific"){
+          this.viewers = this.selectedPrivateSectors.concat(this.selectedNGOs);
+        }
+        console.log(this.viewers)
       let project = {
         'name': this.validateForm.value.name,
         "aim": this.validateForm.value.aim,
@@ -81,8 +105,10 @@ export class ProjectsHomeComponent implements OnInit {
         "peopleTargeted": this.validateForm.value.people,
         "resource": this.Resources,
         "workLocation": this.Locations,
-        "intendedSDG": this.SDGs
+        "intendedSDG": this.SDGs,
+        "viewer":this.viewers
       }
+      console.log(project)
       this.ProjectService.addProject(project).subscribe(
         (res) => {
           alert('success');

@@ -50,4 +50,16 @@ export class ProjectDetailsComponent implements OnInit {
       question: [null, [Validators.required]],
     });
   }
+
+  joinProject(){
+    let id = {
+      "project": this.project.id
+    }
+    this.ProjectService.joinProject(id).toPromise().then(async res => {
+      alert(res)
+    }).catch(err => {
+      alert(err)
+    });
+
+  }
 }
