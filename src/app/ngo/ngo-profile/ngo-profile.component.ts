@@ -12,15 +12,9 @@ export class NgoProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.info = JSON.parse(localStorage.getItem('info'))
-    //Data to test projects
-    // this.info.projects.push({
-    //   "name":"project 1",
-    //   "aim":"ZeroHunger"
-    // })
-    // this.info.projects.push({
-    //   "name":"project 2",
-    //   "aim":"Peace"
-    // })
+    this.info.projectsCreated.concat(this.info.projectsJoined)
+    this.info["projects"] = this.info.projectsCreated
+    console.log(this.info.projects)
   }
 
 }

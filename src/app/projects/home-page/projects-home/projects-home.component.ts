@@ -76,28 +76,14 @@ export class ProjectsHomeComponent implements OnInit {
     if (this.Resources.length != 0 &&
       this.SDGs.length != 0 &&
       this.Locations.length != 0) {
-        if(this.radioValue == "All"){
-          this.ngos.forEach(ngo => {
-            this.viewers.push(ngo.id)
-          });
-          this.privateSectors.forEach(ps => {
-            this.viewers.push(ps.id)
-          });
-        }
-        else if(this.radioValue == "Private Sectors"){
-          this.privateSectors.forEach(ps => {
-            this.viewers.push(ps.id)
-          });
-        }
-        else if(this.radioValue == "NGOs"){
-          this.ngos.forEach(ngo => {
-            this.viewers.push(ngo.id)
-          });
-        }
-        else if(this.radioValue == "Specific"){
+        if(this.radioValue == "All")
+          this.viewers.push(1)  
+        else if(this.radioValue == "Private Sectors")
+          this.viewers.push(2)
+        else if(this.radioValue == "NGOs")
+          this.viewers.push(3)
+        else if(this.radioValue == "Specific")
           this.viewers = this.selectedPrivateSectors.concat(this.selectedNGOs);
-        }
-        console.log(this.viewers)
       let project = {
         'name': this.validateForm.value.name,
         "aim": this.validateForm.value.aim,

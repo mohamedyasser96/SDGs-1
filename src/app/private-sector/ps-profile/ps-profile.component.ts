@@ -16,7 +16,8 @@ export class PsProfileComponent implements OnInit {
  async ngOnInit() {
     this.loading = true;
     this.ps = JSON.parse(localStorage.getItem('info'))
-    this.ps["projects"] = this.ps.projectsCreated + this.ps.projectsJoined
+    this.ps.projectsCreated.concat(this.ps.projectsJoined)
+    this.ps["projects"] = this.ps.projectsCreated
     this.loading = false;
   }
 }
