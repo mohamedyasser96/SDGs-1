@@ -1,0 +1,24 @@
+<div class="wrapper">
+    <div class="side-div" *ngIf="ps">
+        <div class="opacity">
+            <h1 style="text-align: center;">{{ps.name}}</h1>
+            <h3 style="text-align: center;">{{ps.email}}</h3>
+        </div>
+        <div class="nav">
+            <app-ps-nav-bar></app-ps-nav-bar>
+        </div>
+    </div>
+    <div class="middle-div">
+        <h3 style="text-align: center;">Recieved Requests</h3>
+        <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a project" [(ngModel)]="selectedValue"
+            (ngModelChange)="getRequests()">
+            <nz-option *ngFor="let project of projects" nzLabel={{project.name}} nzValue={{project.id}}></nz-option>
+        </nz-select>
+        <div *ngFor="let row of requests" class="row">
+            <request-card [title]="'Project Join Recieved Requests'" [requestor]="row[0].requestor" [project]="row[0].project"
+                [status]="row[0].status" [id]="row[0].id" (onStatusChange)="getRequests()"></request-card>
+            <request-card *ngIf="row.length > 1" [title]="'Project Join Recieved Request'" [requestor]="row[1].requestor"
+                [project]="row[1].project" [status]="row[1].status" [id]="row[1].id" (onStatusChange)="updateRequests($event)"></request-card>
+        </div>
+    </div>
+</div>

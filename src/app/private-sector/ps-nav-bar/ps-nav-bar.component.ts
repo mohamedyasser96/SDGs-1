@@ -19,4 +19,12 @@ export class PsNavBarComponent implements OnInit {
   routeToProfile(){
     this.router.navigate(["privateSector/profile"])
   }
+
+  routeToRequests() {
+    this.router.navigate(['privateSector/sentRequests']);
+  }
+
+  routeToRecRequests() {
+    this.router.navigate(['privateSector/recievedRequests']);
+  }
 }

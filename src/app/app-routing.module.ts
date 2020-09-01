@@ -13,8 +13,10 @@ import { SignupRequestsComponent } from './admin/signup-requests/signup-requests
 import { HomeForumComponent } from './forum/home-forum/home-forum.component';
 import { ForumQuestionComponent } from './forum/forum-question/forum-question.component';
 import { EntitiesComponent } from './admin/entities/entities.component';
-
-
+import { SentRequestsComponent } from './private-sector/sent-requests/sent-requests.component';
+import { RecievedRequestsComponent } from './private-sector/recieved-requests/recieved-requests.component';
+import { SentRequestsNgoComponent } from './ngo/sent-requests-ngo/sent-requests-ngo.component';
+import { RecievedRequestsNgoComponent } from './ngo/recieved-requests-ngo/recieved-requests-ngo.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,14 @@ const routes: Routes = [
     component: PsProfileComponent
   },
   {
+    path: 'privateSector/sentRequests',
+    component: SentRequestsComponent
+  },
+  {
+    path: 'privateSector/recievedRequests',
+    component: RecievedRequestsComponent
+  },
+  {
     path: 'projects/home',
     component: ProjectsHomeComponent
   },
@@ -44,6 +54,14 @@ const routes: Routes = [
   {
     path: 'ngo/profile',
     component: NgoProfileComponent
+  },
+  {
+    path: 'ngo/sentRequests',
+    component: SentRequestsNgoComponent
+  },
+  {
+    path: 'ngo/recievedRequests',
+    component: RecievedRequestsNgoComponent
   },
   {
     path: 'admin/home',

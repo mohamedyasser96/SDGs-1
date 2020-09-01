@@ -19,4 +19,12 @@ export class NgoNavBarComponent implements OnInit {
   routeToProfile(){
     this.router.navigate(["ngo/profile"])
   }
+
+  routeToRequests() {
+    this.router.navigate(['ngo/sentRequests']);
+  }
+
+  routeToRecRequests() {
+    this.router.navigate(['ngo/recievedRequests']);
+  }
 }

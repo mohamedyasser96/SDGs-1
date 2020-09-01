@@ -1,0 +1,20 @@
+<nz-card style="width:33vw;" nzTitle={{title}} *ngIf="project">
+    <h3>Project</h3>
+    <p>{{project.name}}</p>
+    <nz-divider></nz-divider>
+    <h3 *ngIf="requestor">Requestor</h3>
+    <p *ngIf="requestor">{{requestor.name}}</p>
+    <h3 *ngIf="owner">Owner</h3>
+    <p *ngIf="owner">{{owner.name}}</p>
+    <nz-divider></nz-divider>
+    <h3>Status</h3>
+    <p *ngIf="status == 'Pending'" style="color: rgb(223, 223, 72); font-weight: bold;">{{status}}</p>
+    <p *ngIf="status == 'Accepted'" style="color: green; font-weight: bold;">{{status}}</p>
+    <p *ngIf="status == 'Rejected'" style="color: red; font-weight: bold;">{{status}}</p>
+    <nz-divider *ngIf="requestor && status == 'Pending'"></nz-divider>
+    <h3 *ngIf="requestor && status == 'Pending'">Action</h3>
+    <div *ngIf="requestor && status == 'Pending'">
+        <button class="button-accept" (click)="accept()">Accept</button>
+        <button class="button-reject" (click)="reject()">Reject</button>
+    </div>
+</nz-card>
