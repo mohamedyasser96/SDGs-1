@@ -43,6 +43,19 @@ export class ProjectService {
     })
   }
 
+  getCreatedProjects(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+      headers.append('Content-Type', 'application/json');
+      headers.append('Access-Control-Allow-Origin', '*');
+      this.http.get(`${ip}/project/created`, { headers: headers }).toPromise().then(res => {
+        resolve(res);
+      }, err => {
+        reject(err);
+      });
+    })
+  }
+
   addQuestion(info): Observable<any> {
     return this.http.post(`${ip}/discussion/addQuestion`, info)
   }

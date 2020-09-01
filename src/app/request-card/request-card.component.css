@@ -1,0 +1,27 @@
+.button-accept {
+  border-radius: 5px;
+  margin-right: 3%;
+  background: green;
+  border: none;
+  border-color: black;
+  color: white;
+  font-size: large;
+}
+
+.button-accept:hover {
+  background: lightgreen;
+}
+
+.button-reject {
+    border-radius: 5px;
+    margin-right: 3%;
+    background: red;
+    border: none;
+    border-color: black;
+    color: white;
+    font-size: large;
+  }
+  
+  .button-reject:hover {
+    background: lightcoral;
+  }

@@ -29,6 +29,11 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { HomeForumComponent } from './forum/home-forum/home-forum.component';
 import { ForumQuestionComponent } from './forum/forum-question/forum-question.component';
 import { EntitiesComponent } from './admin/entities/entities.component';
+import { RequestCardComponent } from './request-card/request-card.component';
+import { SentRequestsComponent } from './private-sector/sent-requests/sent-requests.component';
+import { RecievedRequestsComponent } from './private-sector/recieved-requests/recieved-requests.component';
+import { SentRequestsNgoComponent } from './ngo/sent-requests-ngo/sent-requests-ngo.component';
+import { RecievedRequestsNgoComponent } from './ngo/recieved-requests-ngo/recieved-requests-ngo.component';
 
 
 registerLocaleData(en);
@@ -52,7 +57,12 @@ registerLocaleData(en);
     UnauthorizedComponent,
     HomeForumComponent,
     ForumQuestionComponent,
-    EntitiesComponent
+    EntitiesComponent,
+    RequestCardComponent,
+    SentRequestsComponent,
+    RecievedRequestsComponent,
+    SentRequestsNgoComponent,
+    RecievedRequestsNgoComponent
 
   ],
   imports: [
