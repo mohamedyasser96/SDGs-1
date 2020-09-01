@@ -1,0 +1,52 @@
+<div class="wrapper">
+    <div class="side-div">
+        <div class="opacity" *ngIf="admin">
+            <h1 style="text-align: center;">{{admin.name}}</h1>
+            <h3 style="text-align: center;">{{admin.email}}</h3>
+        </div>
+        <div class="nav">
+            <app-admin-nav-bar></app-admin-nav-bar>
+        </div>
+    </div>
+    <div class="middle-div">
+        <h1>Entities</h1>
+        <nz-spin *ngIf="!entities">
+            <nz-table #basicTable [nzData]="entities">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Main Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data; let i = index;">
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Type</td>
+                        <td>Main Contact</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </nz-spin>
+        <nz-table *ngIf="entities" #basicTable [nzData]="entities">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th>Main Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data; let i = index;">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.type }}</td>
+                    <td>{{ data.mainContact }}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

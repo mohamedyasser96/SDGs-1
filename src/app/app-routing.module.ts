@@ -12,6 +12,7 @@ import { AdminsComponent } from './admin/admins/admins.component';
 import { SignupRequestsComponent } from './admin/signup-requests/signup-requests.component';
 import { HomeForumComponent } from './forum/home-forum/home-forum.component';
 import { ForumQuestionComponent } from './forum/forum-question/forum-question.component';
+import { EntitiesComponent } from './admin/entities/entities.component';
 
 
 
@@ -57,6 +58,10 @@ const routes: Routes = [
     component: SignupRequestsComponent
   },
   {
+    path: 'admin/entities',
+    component: EntitiesComponent
+  },
+  {
     path: 'forum/home',
     component: HomeForumComponent
   },
@@ -64,7 +69,6 @@ const routes: Routes = [
     path: 'forum/question',
     component: ForumQuestionComponent
   },
-  
 ];
 
 @NgModule({

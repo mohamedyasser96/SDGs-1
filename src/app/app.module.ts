@@ -28,6 +28,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 import { HomeForumComponent } from './forum/home-forum/home-forum.component';
 import { ForumQuestionComponent } from './forum/forum-question/forum-question.component';
+import { EntitiesComponent } from './admin/entities/entities.component';
 
 
 registerLocaleData(en);
@@ -50,7 +51,8 @@ registerLocaleData(en);
     SignupRequestsComponent,
     UnauthorizedComponent,
     HomeForumComponent,
-    ForumQuestionComponent
+    ForumQuestionComponent,
+    EntitiesComponent
 
   ],
   imports: [
