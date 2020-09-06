@@ -58,7 +58,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.ProjectService.joinProject(id).toPromise().then(async res => {
       alert(res)
     }).catch(err => {
-      alert(err)
+      alert(err.error)
     });
 
   }
