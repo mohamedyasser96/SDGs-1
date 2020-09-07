@@ -9,7 +9,7 @@
     <img src="../../../../assets/arrow.svg" class="arrow" />
   </div>
       <div class="filters">
-        <p>Filter by project's aim:</p>
+        <p>Filter by SDG:</p>
         <nz-select style = "width:15%" nzAllowClear nzPlaceHolder="Please Select Aim " [(ngModel)]="filterArgs.aim">
           <nz-option *ngFor="let option of listOfSDGs" [nzLabel]="option.name" [nzValue]="option.name"></nz-option>
         </nz-select>

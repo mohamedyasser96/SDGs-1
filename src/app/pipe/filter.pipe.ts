@@ -10,8 +10,7 @@ export class FilterPipe implements PipeTransform {
     if (!items || !filter || filter["aim"] == null) {
       return items;
     }
-    // filter items array, items which match and return true will be
-    // kept, false will be filtered out
-    return items.filter(item => item.aim.indexOf(filter["aim"]) !== -1);
+    let x =  items.filter(item => item.intendedSDGs.filter(sdg => sdg["name"] == filter["aim"]).length>0);
+    return x
   }
 }

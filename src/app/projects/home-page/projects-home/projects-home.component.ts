@@ -28,7 +28,7 @@ export class ProjectsHomeComponent implements OnInit {
   Locations = [];
   Resources = [];
   projects = [];
-  filterArgs = {"aim":""}; 
+  filterArgs = {"aim":null}; 
   radioValue = null;
   viewers = [];
 
