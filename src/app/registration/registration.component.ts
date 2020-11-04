@@ -144,7 +144,7 @@ export class RegistrationComponent implements OnInit {
       formData.append('email', this.validateNGO.value.email);
       formData.append(
         'password',
-        Md5.hashStr(this.validateNGO.value.password).toString()
+        this.validateNGO.value.password.toString()
       );
       formData.append('contact', this.validateNGO.value.mainContact);
       formData.append('vision', this.validateNGO.value.vision);
@@ -186,7 +186,7 @@ export class RegistrationComponent implements OnInit {
       let PS = {
         'name': this.validatePS.value.name,
         "email": this.validatePS.value.email,
-        "password": Md5.hashStr(this.validatePS.value.password),
+        "password": this.validatePS.value.password,
         'contact': this.validatePS.value.mainContact,
         "resource": this.Resources,
         "directionToImpact": this.Directions,

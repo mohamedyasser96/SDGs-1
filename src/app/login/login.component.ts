@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     if (this.validateForm.valid) {
       let user = {
         "username": this.validateForm.value.username,
-        "password": Md5.hashStr(this.validateForm.value.password),
+        "password": this.validateForm.value.password,
       }
 
       // let user = {
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/ngo/profile'])
         else if (info.type == "PrivateSector")
           this.router.navigate(['privateSector/profile'])
-        else if (info.type == "Admin") 
+        else if (info.type == "Admin")
           this.router.navigate(['admin/home'])
       }, err => {
         alert("invalid login")
